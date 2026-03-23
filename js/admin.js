@@ -427,16 +427,19 @@
     var html = '';
     if (currentTab === 'blogs') {
       items.forEach(function (item) {
+        var hasBody = !!(item.slug && TinahtData.getBlogBody(item.id));
+        var hasPage = !!(item.url || item.slug);
         html +=
           '<div class="admin-item">' +
+          (item.imageUrl ? '<img src="' + escapeHTML(item.imageUrl) + '" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:12px;">' : '') +
           '<div class="admin-item__header">' +
           '<span class="admin-item__tag">' + escapeHTML(TinahtData.CATEGORIES[item.category] || item.category) + '</span>' +
           (item.featured ? '<span class="admin-item__featured">Featured</span>' : '') +
-          (item.slug && TinahtData.getBlogBody(item.id) ? '<span class="admin-item__featured" style="background:var(--color-primary);">Has Page</span>' : (item.slug ? '<span class="admin-item__featured" style="background:var(--color-gray-600);">Slug set</span>' : '')) +
+          (hasBody ? '<span class="admin-item__featured" style="background:var(--color-primary);">Has Page</span>' : (hasPage ? '<span class="admin-item__featured" style="background:var(--color-gray-600);">Has URL</span>' : '')) +
           '</div>' +
           '<h4 class="admin-item__title">' + escapeHTML(item.title) + '</h4>' +
           '<p class="admin-item__text">' + escapeHTML(truncate(item.description, 100)) + '</p>' +
-          '<p class="admin-item__meta">' + escapeHTML(item.author) + ' &bull; ' + formatDate(item.date) + '</p>' +
+          '<p class="admin-item__meta">' + escapeHTML(item.author) + ' &bull; ' + formatDate(item.date) + (item.readTime ? ' &bull; ' + escapeHTML(item.readTime) : '') + '</p>' +
           (item.url ? '<p class="admin-item__meta" style="margin-top:4px;"><a href="' + escapeHTML(item.url) + '" target="_blank" style="color:var(--color-primary);font-size:13px;">&#128279; ' + escapeHTML(item.url) + '</a></p>' : '') +
           '<div class="admin-item__actions">' +
           '<button class="btn btn-secondary" data-edit="' + item.id + '">Edit</button>' +
@@ -598,6 +601,7 @@
         var slugInput = document.getElementById('f-slug');
         var urlInput = document.getElementById('f-url');
         var slugGenBtn = document.getElementById('f-slug-gen');
+        var bodyField = document.getElementById('f-bodyHtml');
         if (!slugInput) return;
 
         function applySlug() {
@@ -609,11 +613,44 @@
         slugInput.addEventListener('input', function () {
           urlInput.value = slugInput.value ? '/blog/' + slugInput.value : '';
         });
-        // Auto-fill slug when adding new post and slug is empty
         if (!item) {
           titleInput.addEventListener('blur', function () {
             if (!slugInput.value) applySlug();
           });
+        }
+
+        // If editing a post that has a URL/slug but no body stored locally,
+        // try to fetch the existing HTML page from GitHub and extract the article body
+        if (item && item.slug && bodyField && !bodyField.value.trim()) {
+          var token = getGitHubToken();
+          if (token) {
+            var ghPath = 'blog/' + item.slug + '/index.html';
+            var ghApiUrl = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + ghPath + '?t=' + Date.now();
+            bodyField.placeholder = 'Loading existing page content from GitHub...';
+            fetch(ghApiUrl, { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } })
+              .then(function (res) { return res.ok ? res.json() : null; })
+              .then(function (data) {
+                if (!data || !data.content) {
+                  bodyField.placeholder = 'Paste or write HTML content here...';
+                  return;
+                }
+                var html = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+                // Extract just the article-body content
+                var match = html.match(/<article[^>]*class="article-body"[^>]*>([\s\S]*?)<\/article>/i);
+                if (match) {
+                  // Strip the hero image (first <img> tag) since it's stored separately as imageUrl
+                  var body = match[1].trim().replace(/^\s*<img[^>]*>\s*/i, '').trim();
+                  bodyField.value = body;
+                  TinahtData.saveBlogBody(item.id, body);
+                  bodyField.placeholder = '';
+                } else {
+                  bodyField.placeholder = 'Could not extract article body — paste HTML manually.';
+                }
+              })
+              .catch(function () {
+                bodyField.placeholder = 'Could not load from GitHub — paste HTML manually.';
+              });
+          }
         }
       }, 0);
     } else if (currentTab === 'portfolio') {
