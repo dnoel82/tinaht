@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero Trust Architecture: A Practical Implementation Guide | Tinaht Blog</title>
+  <meta name="description" content="Move beyond perimeter security with this step-by-step guide to implementing zero trust principles — identity verification, network segmentation, and continuous monitoring.">
+  <link rel="icon" type="image/png" href="../../assets/images/logos/favicon-source.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;700&family=Montserrat:wght@500;600;800&family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/portfolio.css">
+  <link rel="stylesheet" href="../../css/pages.css">
+
+  <meta property="og:title" content="Zero Trust Architecture: A Practical Implementation Guide">
+  <meta property="og:description" content="Move beyond perimeter security with this step-by-step guide to implementing zero trust principles in your organization.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tinaht.com/blog/zero-trust-architecture">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zero Trust Architecture: A Practical Implementation Guide">
+  <meta name="twitter:description" content="Move beyond perimeter security with a step-by-step guide to implementing zero trust principles.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Zero Trust Architecture: A Practical Implementation Guide",
+    "description": "Move beyond perimeter security with this step-by-step guide to implementing zero trust principles — identity verification, network segmentation, and continuous monitoring.",
+    "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+    "author": {"@type":"Person","name":"Djonny Noel","url":"https://tinaht.com/about"},
+    "publisher": {"@type":"Organization","name":"Tinaht","logo":{"@type":"ImageObject","url":"https://tinaht.com/assets/images/logos/logo-wordmark.png"}},
+    "datePublished": "2026-02-20",
+    "dateModified": "2026-02-20",
+    "mainEntityOfPage": {"@type":"WebPage","@id":"https://tinaht.com/blog/zero-trust-architecture"},
+    "keywords": ["zero trust architecture","zero trust network","network security","cybersecurity implementation","ZTNA"],
+    "articleSection": "Cybersecurity"
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://tinaht.com/"},
+    {"@type":"ListItem","position":2,"name":"Blog","item":"https://tinaht.com/blog"},
+    {"@type":"ListItem","position":3,"name":"Zero Trust Architecture","item":"https://tinaht.com/blog/zero-trust-architecture"}
+  ]}
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../../" class="site-logo" aria-label="Tinaht home"><span class="site-logo__text">Tinaht</span></a>
+      <nav class="nav-list-desktop" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../portfolio">Portfolio</a></li>
+          <li><a href="../../services">Services</a></li>
+          <li><a href="../../about">About</a></li>
+          <li><a href="../../blog" class="active">Blog</a></li>
+          <li><a href="../../contact" class="btn btn-primary btn-sm">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="drawer-overlay" aria-hidden="true"></div>
+  <nav class="mobile-drawer" aria-label="Mobile navigation">
+    <ul class="nav-list">
+      <li><a href="../../">Home</a></li>
+      <li><a href="../../portfolio">Portfolio</a></li>
+      <li><a href="../../services">Services</a></li>
+      <li><a href="../../about">About</a></li>
+      <li><a href="../../blog">Blog</a></li>
+      <li><a href="../../contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+
+    <section class="page-hero page-hero--article">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="../../blog">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>Zero Trust Architecture</span>
+        </nav>
+        <span class="card__tag" style="margin-bottom:16px;display:inline-block;">Cybersecurity</span>
+        <h1>Zero Trust Architecture: A Practical Implementation Guide</h1>
+        <div class="blog-featured__meta" style="margin-top:16px;">
+          <span>Djonny Noel</span>
+          <span>&bull;</span>
+          <span>Feb 20, 2026</span>
+          <span>&bull;</span>
+          <span>10 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="article-layout">
+
+          <article class="article-body">
+
+            <img
+              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80"
+              alt="Digital security concept with lock and network nodes"
+              style="width:100%;border-radius:12px;margin-bottom:40px;"
+              loading="eager"
+            >
+
+            <p>The old security model was built on a simple premise: everything inside the network perimeter is trusted; everything outside is not. That model made sense when all your users sat in an office and all your servers lived in a data center down the hall. It makes almost no sense today.</p>
+
+            <p>Remote work, SaaS tools, cloud infrastructure, and contractor access mean your "trusted" network is everywhere — and nowhere. A stolen VPN credential or a single compromised endpoint gives an attacker lateral movement across your entire internal network. Zero Trust replaces the perimeter model with a different principle: <strong>never trust, always verify</strong>.</p>
+
+            <h2>What Zero Trust Actually Means</h2>
+
+            <p>Zero Trust is not a product you buy. It is a security posture — a set of architectural principles that change how you grant access to resources. The core ideas:</p>
+
+            <ul>
+              <li><strong>No implicit trust</strong> — location on the network (internal or external) grants no inherent access to anything</li>
+              <li><strong>Least privilege</strong> — users and systems get access to exactly what they need, nothing more</li>
+              <li><strong>Continuous verification</strong> — identity and device health are checked on every request, not just at login</li>
+              <li><strong>Assume breach</strong> — design as if an attacker is already inside; limit blast radius</li>
+              <li><strong>Microsegmentation</strong> — divide the network into small zones so a breach in one area cannot spread</li>
+            </ul>
+
+            <p>NIST SP 800-207 is the definitive US government framework for Zero Trust Architecture if you need a compliance-oriented reference. For practical implementation, here is how to approach it.</p>
+
+            <h2>Step 1: Identity Is the New Perimeter</h2>
+
+            <p>The first pillar of Zero Trust is strong identity. Every user, service, and device needs a verified identity before accessing anything.</p>
+
+            <p><strong>Multi-factor authentication (MFA)</strong> is non-negotiable. Passwords alone are not sufficient — phishing and credential stuffing attacks are too effective. Enforce MFA on every account, with preference for hardware keys (FIDO2/WebAuthn) or authenticator apps over SMS.</p>
+
+            <p><strong>Single Sign-On (SSO)</strong> centralizes authentication, so you have one place to revoke access rather than hunting down credentials across dozens of tools. Okta, Azure AD, and Google Workspace all offer SSO with Zero Trust-compatible conditional access policies.</p>
+
+            <p><strong>Conditional access policies</strong> go further: access decisions factor in device health, location, risk score, and session context — not just who you are. A login from an unmanaged device in an unusual country can trigger step-up authentication or block access outright.</p>
+
+            <h2>Step 2: Device Trust</h2>
+
+            <p>Identity verification is necessary but not sufficient. A legitimate user logging in from a compromised device is still a threat vector. Device trust establishes a baseline health posture before granting access.</p>
+
+            <p>Endpoint management tools (Microsoft Intune, Jamf, CrowdStrike Falcon) can enforce:</p>
+            <ul>
+              <li>OS patch level requirements — block access from devices more than 30 days behind on updates</li>
+              <li>Disk encryption enforced (BitLocker, FileVault)</li>
+              <li>EDR agent running and reporting clean</li>
+              <li>No jailbreak or root detected</li>
+            </ul>
+
+            <p>Certificate-based device authentication goes even further — each managed device gets a unique certificate issued by your PKI. Requests without a valid device certificate are rejected before identity checks even begin.</p>
+
+            <h2>Step 3: Network Microsegmentation</h2>
+
+            <p>Traditional networks are flat: once inside, you can reach anything. Microsegmentation divides the network into isolated zones. A breach in your marketing tooling cannot pivot to your payment processing infrastructure.</p>
+
+            <p>Implementation approaches range from network-level VLANs and firewall rules to software-defined perimeters (SDPs) and service meshes (Istio, Linkerd for container workloads). The key principle: default deny at every boundary, with explicit allow rules for each required flow.</p>
+
+            <p>For cloud environments, use security groups and network policies aggressively. Every service should only be reachable from the specific services that legitimately need to call it — not open to the entire VPC.</p>
+
+            <h2>Step 4: Application-Level Access Control</h2>
+
+            <p>Zero Trust Network Access (ZTNA) solutions — Cloudflare Access, Zscaler Private Access, BeyondCorp Enterprise — replace VPNs for accessing internal applications. Instead of connecting to the network and then accessing apps, users authenticate to a proxy that grants application-specific access based on identity and device posture. The internal network is never exposed.</p>
+
+            <p>For internal APIs and microservices, mutual TLS (mTLS) enforces service-to-service authentication at the transport layer. Each service presents a certificate to prove its identity; services without valid certificates cannot communicate regardless of network location.</p>
+
+            <h2>Step 5: Continuous Monitoring and Response</h2>
+
+            <p>Zero Trust is not a state you reach — it is a continuous process. You need visibility into every access request to detect anomalies and respond to incidents.</p>
+
+            <p>A Security Information and Event Management (SIEM) system aggregates logs from identity providers, endpoints, network devices, and applications. Modern SIEMs (Sentinel, Splunk, Elastic Security) apply behavioral analytics to baseline normal activity and alert on deviations — a service account suddenly accessing file shares it has never touched, or an admin account logging in from two countries simultaneously.</p>
+
+            <p>Pair this with an automated response playbook: suspicious sessions suspended, MFA challenges issued, security team notified — in seconds, not hours.</p>
+
+            <h2>Where to Start</h2>
+
+            <p>Zero Trust implementations can span years. Start where the risk is highest and the effort is lowest:</p>
+
+            <ol>
+              <li><strong>Enforce MFA everywhere</strong> — especially for admin and privileged accounts. This is the single highest-ROI security control available.</li>
+              <li><strong>Audit identity and access</strong> — remove dormant accounts, review overprivileged roles, enforce least privilege on service accounts.</li>
+              <li><strong>Deploy ZTNA for remote access</strong> — replace or supplement your VPN with an application-level proxy.</li>
+              <li><strong>Enable conditional access policies</strong> — block or challenge unmanaged and unhealthy devices.</li>
+              <li><strong>Segment your highest-value assets</strong> — isolate payment systems, customer data stores, and admin interfaces into their own network zones.</li>
+            </ol>
+
+            <p>Zero Trust is not achieved overnight, and it is not all-or-nothing. Each step meaningfully reduces your attack surface and limits the blast radius of any breach that does occur.</p>
+
+          </article>
+
+          <aside class="article-sidebar">
+            <div style="background:var(--color-gray-900);border-radius:12px;padding:24px;margin-bottom:24px;">
+              <h4 style="margin-bottom:16px;">Cybersecurity Consulting</h4>
+              <p style="color:var(--color-gray-400);font-size:14px;line-height:1.6;">We help businesses assess their security posture and implement Zero Trust principles — from MFA rollout to network segmentation and SIEM deployment.</p>
+              <a href="../../contact" class="btn btn-primary" style="margin-top:16px;width:100%;text-align:center;display:block;">Get a Security Assessment</a>
+            </div>
+            <div style="background:var(--color-gray-900);border-radius:12px;padding:24px;">
+              <h4 style="margin-bottom:12px;">Related Articles</h4>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+                <li><a href="../ssl-tls-best-practices-2026" style="color:var(--color-gray-400);font-size:14px;">SSL/TLS Best Practices: Securing Your Web Applications in 2026</a></li>
+                <li><a href="../../blog" style="color:var(--color-gray-400);font-size:14px;">View all blog posts &rarr;</a></li>
+              </ul>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../../" class="site-logo"><span class="site-logo__text">Tinaht</span></a>
+          <p>Scalable, secure technology solutions for startups and businesses that demand more.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          </div>
+        </div>
+        <div><h4 class="footer-heading">Services</h4><ul class="footer-links"><li><a href="../../services/ai-automation">AI Automation</a></li><li><a href="../../services/managed-hosting">Managed Hosting</a></li><li><a href="../../services/network-consulting">Network Consulting</a></li><li><a href="../../services#cybersecurity">Cybersecurity</a></li><li><a href="../../services#speed-optimization">Speed Optimization</a></li></ul></div>
+        <div><h4 class="footer-heading">Company</h4><ul class="footer-links"><li><a href="../../about">About</a></li><li><a href="../../portfolio">Portfolio</a></li><li><a href="../../blog">Blog</a></li><li><a href="../../contact">Contact</a></li></ul></div>
+        <div><h4 class="footer-heading">Legal</h4><ul class="footer-links"><li><a href="../../privacy">Privacy Policy</a></li><li><a href="../../terms">Terms of Service</a></li><li><a href="../../refund-policy">Refund Policy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Tinaht. All rights reserved.</p><ul class="footer-bottom-links"><li><a href="../../privacy">Privacy</a></li><li><a href="../../terms">Terms</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>
