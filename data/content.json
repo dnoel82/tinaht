@@ -1,19 +1,6 @@
 {
   "blogs": [
     {
-      "id": "blog-n8n-slack-automation",
-      "title": "How to Automate Slack Notifications with n8n",
-      "category": "ai-automation",
-      "categoryLabel": "AI & Automation",
-      "imageUrl": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80",
-      "description": "Build webhook-triggered Slack notifications using n8n on Docker — no per-task fees, no third-party middlemen. Real config from Tinaht's stack.",
-      "author": "Djonny Noel",
-      "date": "2026-03-23",
-      "readTime": "9 min read",
-      "url": "/blog/n8n-slack-automation",
-      "featured": false
-    },
-    {
       "id": "seed-blog-1",
       "title": "How AI Workflow Automation Is Transforming Small Business Operations",
       "category": "ai-automation",
@@ -96,32 +83,45 @@
       "date": "2026-01-22",
       "readTime": "9 min read",
       "featured": false
+    },
+    {
+      "id": "blog-n8n-slack-automation",
+      "title": "How to Automate Slack Notifications with n8n",
+      "category": "ai-automation",
+      "categoryLabel": "AI & Automation",
+      "imageUrl": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80",
+      "description": "Build webhook-triggered Slack notifications using n8n on Docker — no per-task fees, no third-party middlemen. Real config from Tinaht's stack.",
+      "author": "Djonny Noel",
+      "date": "2026-03-23",
+      "readTime": "9 min read",
+      "url": "/blog/n8n-slack-automation",
+      "featured": false
     }
   ],
   "testimonials": [
     {
+      "id": "seed-test-1",
       "quote": "Tinaht transformed our network infrastructure. Their team delivered a solution that exceeded our expectations and reduced our downtime significantly. Highly recommended for any business.",
-      "authorName": "Josemine Barthelemy",
-      "avatarInitials": "SM",
+      "authorName": "Sarah Mitchell",
       "role": "CTO",
-      "company": "Tech Inc.",
-      "id": "seed-test-1"
+      "company": "TechVenture Inc.",
+      "avatarInitials": "SM"
     },
     {
+      "id": "seed-test-2",
       "quote": "The AI automation solutions from Tinaht saved us over 20 hours per week in manual processes. Their team understood our needs from day one and delivered beyond our expectations.",
-      "authorName": "Shema AI Robayi",
-      "avatarInitials": "SR",
+      "authorName": "Marcus Johnson",
       "role": "CEO",
-      "company": "PeptaNova.co",
-      "id": "seed-test-2"
+      "company": "GrowthScale Labs",
+      "avatarInitials": "MJ"
     },
     {
+      "id": "seed-test-3",
       "quote": "Moving to Tinaht's managed hosting was the best decision we made. Zero downtime during migration, Docker deployments are seamless, and their support team is incredibly responsive.",
-      "authorName": "Medline Christalin",
-      "avatarInitials": "MC",
-      "role": "CEO",
-      "company": "Multiples LLC",
-      "id": "seed-test-3"
+      "authorName": "Emily Chen",
+      "role": "VP of Engineering",
+      "company": "DataFlow Systems",
+      "avatarInitials": "EC"
     }
   ],
   "team": [
@@ -147,5 +147,5 @@
       "avatarInitials": "TH"
     }
   ],
-  "publishedAt": "2026-03-23T23:40:08.709Z"
+  "publishedAt": "2026-03-23T23:45:21.287Z"
 }
