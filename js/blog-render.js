@@ -43,7 +43,9 @@
         '</div>' +
         '<div class="blog-featured__content">' +
         '<span class="card__tag">' + escapeHTML(TinahtData.CATEGORIES[featured.category] || featured.category) + '</span>' +
-        '<h2>' + escapeHTML(featured.title) + '</h2>' +
+        (featured.url
+          ? '<h2><a href="' + escapeHTML(featured.url) + '" style="color:inherit;text-decoration:none;">' + escapeHTML(featured.title) + '</a></h2>'
+          : '<h2>' + escapeHTML(featured.title) + '</h2>') +
         '<p>' + escapeHTML(featured.description) + '</p>' +
         '<div class="blog-featured__meta">' +
         '<span>' + escapeHTML(featured.author) + '</span>' +
@@ -72,14 +74,22 @@
       var html = '';
 
       nonFeatured.forEach(function (post) {
+        var titleHtml = post.url
+          ? '<h3 class="card__title"><a href="' + escapeHTML(post.url) + '" style="color:inherit;text-decoration:none;">' + escapeHTML(post.title) + '</a></h3>'
+          : '<h3 class="card__title">' + escapeHTML(post.title) + '</h3>';
+        var imageHtml = post.imageUrl
+          ? (post.url
+              ? '<a href="' + escapeHTML(post.url) + '"><img src="' + escapeHTML(post.imageUrl) + '" alt="' + escapeHTML(post.title) + '" loading="lazy"></a>'
+              : '<img src="' + escapeHTML(post.imageUrl) + '" alt="' + escapeHTML(post.title) + '" loading="lazy">')
+          : '';
         html +=
           '<article class="card blog-card" data-category="' + escapeHTML(post.category) + '">' +
           '<div class="card__image">' +
-          (post.imageUrl ? '<img src="' + escapeHTML(post.imageUrl) + '" alt="' + escapeHTML(post.title) + '" loading="lazy">' : '') +
+          imageHtml +
           '<div class="card__image-overlay"></div>' +
           '</div>' +
           '<span class="card__tag">' + escapeHTML(TinahtData.CATEGORIES[post.category] || post.category) + '</span>' +
-          '<h3 class="card__title">' + escapeHTML(post.title) + '</h3>' +
+          titleHtml +
           '<p class="card__text">' + escapeHTML(post.description) + '</p>' +
           '<div class="blog-featured__meta" style="padding:0 24px 20px;">' +
           '<span>' + escapeHTML(post.author) + '</span>' +

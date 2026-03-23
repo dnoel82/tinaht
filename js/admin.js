@@ -169,6 +169,7 @@
           '<h4 class="admin-item__title">' + escapeHTML(item.title) + '</h4>' +
           '<p class="admin-item__text">' + escapeHTML(truncate(item.description, 100)) + '</p>' +
           '<p class="admin-item__meta">' + escapeHTML(item.author) + ' &bull; ' + formatDate(item.date) + '</p>' +
+          (item.url ? '<p class="admin-item__meta" style="margin-top:4px;"><a href="' + escapeHTML(item.url) + '" target="_blank" style="color:var(--color-primary);font-size:13px;">&#128279; ' + escapeHTML(item.url) + '</a></p>' : '') +
           '<div class="admin-item__actions">' +
           '<button class="btn btn-secondary" data-edit="' + item.id + '">Edit</button>' +
           '<button class="btn btn-danger btn-secondary" data-delete="' + item.id + '">Delete</button>' +
@@ -272,6 +273,10 @@
         '</div>' +
         '</div>' +
         '<div class="form-group">' +
+        '<label for="f-url">Post URL <span style="font-weight:400;color:var(--color-gray-500)">(optional — link to a dedicated post page, e.g. /blog/my-post)</span></label>' +
+        '<input type="text" id="f-url" class="form-input" placeholder="/blog/my-post" value="' + escapeHTML(item ? (item.url || '') : '') + '">' +
+        '</div>' +
+        '<div class="form-group">' +
         '<label class="admin-form__checkbox"><input type="checkbox" id="f-featured"' + (item && item.featured ? ' checked' : '') + '><span>Featured Article</span></label>' +
         '</div>' +
         '<div class="admin-form__footer">' +
@@ -362,6 +367,7 @@
         author: document.getElementById('f-author').value.trim() || 'Djonny Noel',
         date: document.getElementById('f-date').value,
         readTime: document.getElementById('f-readTime').value.trim(),
+        url: document.getElementById('f-url').value.trim() || null,
         featured: document.getElementById('f-featured').checked
       };
     } else if (currentTab === 'testimonials') {
