@@ -49,18 +49,6 @@
       "featured": false
     },
     {
-      "id": "seed-blog-5",
-      "title": "Building Custom AI Chatbots: From Concept to Deployment",
-      "category": "ai-automation",
-      "categoryLabel": "AI & Automation",
-      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80",
-      "description": "A technical walkthrough of designing, training, and deploying custom AI chatbots that actually solve customer problems.",
-      "author": "Djonny Noel",
-      "date": "2026-02-07",
-      "readTime": "12 min read",
-      "featured": false
-    },
-    {
       "id": "seed-blog-6",
       "title": "The Rise of Edge Computing: What It Means for Your Infrastructure",
       "category": "industry-news",
@@ -87,12 +75,12 @@
   ],
   "testimonials": [
     {
+      "id": "seed-test-1",
       "quote": "Tinaht transformed our network infrastructure. Their team delivered a solution that exceeded our expectations and reduced our downtime significantly. Highly recommended for any business.",
-      "authorName": "Josemine Bartelemy",
-      "avatarInitials": "JB",
+      "authorName": "Sarah Mitchell",
       "role": "CTO",
-      "company": "Tech-info Inc.",
-      "id": "seed-test-1"
+      "company": "TechVenture Inc.",
+      "avatarInitials": "SM"
     },
     {
       "id": "seed-test-2",
@@ -120,19 +108,19 @@
       "avatarInitials": "DN"
     },
     {
-      "name": "Team Hiring Noel",
-      "avatarInitials": "TH",
+      "id": "seed-team-2",
+      "name": "Team Hiring",
       "role": "Position Open",
-      "bio": "We're growing! Interested in joining our team? Reach out to us and let's build the future of technology together. (testing)",
-      "id": "seed-team-2"
+      "bio": "We're growing! Interested in joining our team? Reach out to us and let's build the future of technology together.",
+      "avatarInitials": "TH"
     },
     {
-      "name": "Listave Hiring",
-      "avatarInitials": "LH",
-      "role": "IT Help Desk",
-      "bio": "We're always looking for talented engineers, developers, and consultants who share our vision for excellence. great fit",
-      "id": "seed-team-3"
+      "id": "seed-team-3",
+      "name": "Team Hiring",
+      "role": "Position Open",
+      "bio": "We're always looking for talented engineers, developers, and consultants who share our vision for excellence.",
+      "avatarInitials": "TH"
     }
   ],
-  "publishedAt": "2026-03-13T19:45:47.499Z"
+  "publishedAt": "2026-03-23T17:24:16.212Z"
 }
