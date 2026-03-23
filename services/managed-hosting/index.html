@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Managed Docker Hosting & DevOps Service | Tinaht</title>
+  <meta name="description" content="Tinaht handles your Docker infrastructure, CI/CD pipelines, and uptime monitoring so your team ships faster. Request a quote for managed hosting today.">
+  <link rel="icon" type="image/png" href="../../assets/images/logos/favicon-source.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;700&family=Montserrat:wght@500;600;800&family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/portfolio.css">
+  <link rel="stylesheet" href="../../css/pages.css">
+
+  <meta property="og:title" content="Managed Docker Hosting & DevOps Service | Tinaht">
+  <meta property="og:description" content="Tinaht handles your Docker infrastructure, CI/CD pipelines, and uptime monitoring so your team ships faster.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tinaht.com/services/managed-hosting">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Managed Docker Hosting & DevOps Service | Tinaht">
+  <meta name="twitter:description" content="Docker infrastructure, CI/CD pipelines, and 24/7 uptime monitoring handled for you. Request a quote.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Managed Docker Hosting & DevOps",
+    "serviceType": "Managed Cloud Hosting",
+    "provider": {
+      "@type": "Organization",
+      "name": "Tinaht",
+      "url": "https://tinaht.com"
+    },
+    "url": "https://tinaht.com/services/managed-hosting",
+    "description": "Managed Docker hosting and DevOps as a service for startups. Docker containerization, CI/CD via GitHub Actions, SSL management, automated backups, and 24/7 infrastructure monitoring.",
+    "areaServed": "US",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "description": "Monthly retainer — Starter, Growth, and Scale tiers available."
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which VPS providers do you deploy on?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We deploy on DigitalOcean, Hetzner, Vultr, and Linode depending on your location, budget, and workload. We can also deploy on your existing provider — we're not tied to any platform."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you support multi-container applications?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We use Docker Compose for multi-service stacks and can configure Traefik or Nginx as a reverse proxy, handle inter-container networking, and manage secrets via environment files or Vault."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's included in the CI/CD setup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We configure GitHub Actions pipelines that build, test, and deploy your containers on every push to main. Zero-downtime deployments using rolling updates. We also set up staging environments on request."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you handle database backups?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We set up automated daily backups for PostgreSQL, MySQL, and MongoDB with configurable retention policies. Backups are encrypted and stored off-server — either in S3-compatible storage or a separate VPS."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tinaht.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://tinaht.com/services" },
+      { "@type": "ListItem", "position": 3, "name": "Managed Docker Hosting & DevOps", "item": "https://tinaht.com/services/managed-hosting" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../../" class="site-logo" aria-label="Tinaht home"><span class="site-logo__text">Tinaht</span></a>
+      <nav class="nav-list-desktop" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../portfolio">Portfolio</a></li>
+          <li><a href="../../services" class="active">Services</a></li>
+          <li><a href="../../about">About</a></li>
+          <li><a href="../../blog">Blog</a></li>
+          <li><a href="../../contact" class="btn btn-primary btn-sm">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="drawer-overlay" aria-hidden="true"></div>
+  <nav class="mobile-drawer" aria-label="Mobile navigation">
+    <ul class="nav-list">
+      <li><a href="../../">Home</a></li>
+      <li><a href="../../portfolio">Portfolio</a></li>
+      <li><a href="../../services">Services</a></li>
+      <li><a href="../../about">About</a></li>
+      <li><a href="../../blog">Blog</a></li>
+      <li><a href="../../contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="../../services">Services</a>
+          <span aria-hidden="true">/</span>
+          <span>Managed Docker Hosting</span>
+        </nav>
+        <h1>Managed Docker Hosting &amp; DevOps — <span class="text-gradient">Your Infrastructure, Handled</span></h1>
+        <p style="max-width:700px;margin:0 auto;">You shouldn't need a full-time DevOps engineer to keep your Docker stack running. Tinaht manages your infrastructure — containers, CI/CD pipelines, SSL, backups, and monitoring — so your team ships product instead of babysitting servers.</p>
+        <div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="../../contact" class="btn btn-primary">Request a Quote</a>
+          <a href="../../services" class="btn btn-secondary">All Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT'S INCLUDED -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">What's Included</p>
+          <h2>Everything in a Managed Docker Hosting Plan</h2>
+        </div>
+        <div class="grid-3" data-animate="fade-up">
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:28px;margin-bottom:12px;">🐳</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Docker Containerization</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">We containerize your application using Docker and Docker Compose, write production-ready Dockerfiles, and configure multi-stage builds for lean images.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:28px;margin-bottom:12px;">🔄</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">CI/CD via GitHub Actions</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">Automated build, test, and deploy pipelines triggered on every push. Zero-downtime rolling deployments. Staging environments available on request.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:28px;margin-bottom:12px;">🔒</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">SSL &amp; Reverse Proxy</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">SSL certificates provisioned and auto-renewed via Let's Encrypt. Traefik or Nginx configured as reverse proxy with HTTP-to-HTTPS redirect and security headers.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:28px;margin-bottom:12px;">💾</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Automated Backups</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">Daily encrypted backups for databases (PostgreSQL, MySQL, MongoDB) and persistent volumes, stored off-server with configurable retention. Verified restores on request.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:28px;margin-bottom:12px;">📡</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">24/7 Uptime Monitoring</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">Health checks on all containers and endpoints. Alerting to Slack or email when a service goes down. We respond to critical alerts, not just forward them.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:28px;margin-bottom:12px;">⚡</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Cloudflare Integration</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">DNS management, CDN configuration, WAF rules, and DDoS protection via Cloudflare. We configure caching headers and page rules to minimize origin load.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO THIS IS FOR -->
+    <section class="section section--alt">
+      <div class="container" style="max-width:820px;">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Is This Right for You?</p>
+          <h2>Who This Service Is For</h2>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;" data-animate="fade-up">
+
+          <div style="padding:24px;background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;">
+            <strong style="color:var(--color-white);">If you're running Docker locally but struggling to deploy reliably to production...</strong>
+            <p style="color:var(--color-gray-500);margin:8px 0 0;">We'll take your Docker Compose setup, harden it for production, and build a deployment pipeline that pushes code to your server automatically — no more SSH and manual restarts.</p>
+          </div>
+
+          <div style="padding:24px;background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;">
+            <strong style="color:var(--color-white);">If you're paying too much for Heroku, Render, or Railway and want more control...</strong>
+            <p style="color:var(--color-gray-500);margin:8px 0 0;">We migrate your app to a self-hosted VPS running Docker, match the developer experience you're used to, and cut your monthly infra cost — typically by 50–70%.</p>
+          </div>
+
+          <div style="padding:24px;background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;">
+            <strong style="color:var(--color-white);">If you have a working stack but no one owns the ops layer...</strong>
+            <p style="color:var(--color-gray-500);margin:8px 0 0;">We take over the infrastructure ownership — monitoring, updates, backups, incident response — so your engineering team focuses on product and not on whether the database is backing up correctly.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK COMPARISON -->
+    <section class="section">
+      <div class="container" style="max-width:900px;">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">How We Compare</p>
+          <h2>Tinaht Managed vs. Your Other Options</h2>
+        </div>
+        <div style="overflow-x:auto;" data-animate="fade-up">
+          <table style="width:100%;border-collapse:collapse;font-size:15px;">
+            <thead>
+              <tr style="background:var(--color-gray-900);border-bottom:1px solid var(--color-gray-700);">
+                <th style="text-align:left;padding:16px;color:var(--color-gray-400);font-weight:600;"></th>
+                <th style="text-align:left;padding:16px;color:var(--color-primary);font-weight:700;">Tinaht Managed</th>
+                <th style="text-align:left;padding:16px;color:var(--color-gray-400);font-weight:600;">AWS DIY</th>
+                <th style="text-align:left;padding:16px;color:var(--color-gray-400);font-weight:600;">Render / Railway</th>
+                <th style="text-align:left;padding:16px;color:var(--color-gray-400);font-weight:600;">Hire DevOps Engineer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--color-gray-700);">
+                <td style="padding:14px 16px;color:var(--color-gray-400);">Monthly cost</td>
+                <td style="padding:14px 16px;color:var(--color-white);">Retainer + VPS cost</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">Unpredictable, scales fast</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">Fixed but expensive per dyno</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">$120k–$160k/year salary</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--color-gray-700);">
+                <td style="padding:14px 16px;color:var(--color-gray-400);">Docker support</td>
+                <td style="padding:14px 16px;color:var(--color-white);">Native — entire stack</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">Yes, complex config required</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">Partial (no custom Compose)</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">Depends on the hire</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--color-gray-700);">
+                <td style="padding:14px 16px;color:var(--color-gray-400);">Ongoing management</td>
+                <td style="padding:14px 16px;color:var(--color-white);">Included — we own it</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">You own it, you fix it</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">Platform-level only</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">Included — if they stay</td>
+              </tr>
+              <tr>
+                <td style="padding:14px 16px;color:var(--color-gray-400);">Setup complexity</td>
+                <td style="padding:14px 16px;color:var(--color-white);">We handle everything</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">High — steep learning curve</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">Low — but limited control</td>
+                <td style="padding:14px 16px;color:var(--color-gray-500);">High — recruiting takes months</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDY -->
+    <section class="section section--alt">
+      <div class="container" style="max-width:820px;">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Case Study</p>
+          <h2>SaaS Migration: Heroku to Self-Hosted Docker</h2>
+        </div>
+        <div style="padding:32px;background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;" data-animate="fade-up">
+          <p style="color:var(--color-gray-400);line-height:1.8;margin:0 0 16px;">A SaaS startup was running three services on Heroku — a Node.js API, a PostgreSQL database, and a background worker — at $420/month with 45-minute deployment times due to dyno cycling. We containerized the full stack with Docker Compose, set up GitHub Actions for CI/CD with zero-downtime deployments, and migrated to a Hetzner VPS with Cloudflare in front. Deployment time dropped from 45 minutes to under 4 minutes, and monthly infrastructure cost came down by 62%.</p>
+          <p style="color:var(--color-gray-500);font-style:italic;margin:0;">"We had been putting off the Heroku migration for a year because we didn't want to deal with the ops work. Tinaht handled the cutover on a Saturday with no downtime and handed us back a stack that's faster and half the cost."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOSTING PACKAGES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Pricing</p>
+          <h2>Managed Hosting Packages</h2>
+          <p>All plans include initial setup, documentation, and a 14-day onboarding period.</p>
+        </div>
+        <div class="pillar-grid" data-animate="fade-up">
+
+          <div class="pillar-card">
+            <h3>Starter</h3>
+            <p style="color:var(--color-primary);font-weight:700;font-size:20px;margin:12px 0;">Up to 3 Containers</p>
+            <ul style="list-style:none;padding:0;text-align:left;font-size:15px;color:var(--color-gray-500);display:flex;flex-direction:column;gap:8px;margin:0 0 20px;">
+              <li>✓ Docker Compose setup</li>
+              <li>✓ SSL + reverse proxy</li>
+              <li>✓ Daily backups (7-day retention)</li>
+              <li>✓ Uptime monitoring</li>
+              <li>✓ GitHub Actions CI/CD</li>
+            </ul>
+            <a href="../../contact" class="btn btn-secondary">Request a Quote</a>
+          </div>
+
+          <div class="pillar-card" style="border-color:var(--color-primary);">
+            <div style="color:var(--color-primary);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Most Popular</div>
+            <h3>Growth</h3>
+            <p style="color:var(--color-primary);font-weight:700;font-size:20px;margin:12px 0;">Up to 10 Containers</p>
+            <ul style="list-style:none;padding:0;text-align:left;font-size:15px;color:var(--color-gray-500);display:flex;flex-direction:column;gap:8px;margin:0 0 20px;">
+              <li>✓ Everything in Starter</li>
+              <li>✓ Staging environment</li>
+              <li>✓ Cloudflare WAF setup</li>
+              <li>✓ 30-day backup retention</li>
+              <li>✓ Priority incident response</li>
+            </ul>
+            <a href="../../contact" class="btn btn-primary">Request a Quote</a>
+          </div>
+
+          <div class="pillar-card">
+            <h3>Scale</h3>
+            <p style="color:var(--color-primary);font-weight:700;font-size:20px;margin:12px 0;">Unlimited Containers</p>
+            <ul style="list-style:none;padding:0;text-align:left;font-size:15px;color:var(--color-gray-500);display:flex;flex-direction:column;gap:8px;margin:0 0 20px;">
+              <li>✓ Everything in Growth</li>
+              <li>✓ Multi-server / multi-region</li>
+              <li>✓ Custom SLA</li>
+              <li>✓ Weekly infra review calls</li>
+              <li>✓ On-call incident response</li>
+            </ul>
+            <a href="../../contact" class="btn btn-secondary">Request a Quote</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL FAQ -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Technical FAQ</p>
+          <h2>Common Questions</h2>
+        </div>
+        <div class="faq-list" style="max-width:760px;margin:0 auto;" data-animate="fade-up">
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="this.parentElement.classList.toggle('is-open')">
+              Which VPS providers do you deploy on?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>We deploy on DigitalOcean, Hetzner, Vultr, and Linode depending on your location, budget, and workload requirements. We can also deploy on your existing provider — we're not tied to any platform.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="this.parentElement.classList.toggle('is-open')">
+              Do you support multi-container applications?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Yes. We use Docker Compose for multi-service stacks and can configure Traefik or Nginx as a reverse proxy, handle inter-container networking, and manage secrets via environment files or HashiCorp Vault.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="this.parentElement.classList.toggle('is-open')">
+              What's included in the CI/CD setup?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>We configure GitHub Actions pipelines that build your Docker image, run tests, push to a container registry, and deploy to your server via SSH on every push to main. Zero-downtime rolling updates. Staging environments set up on request.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="this.parentElement.classList.toggle('is-open')">
+              Can you handle database backups?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Yes. We set up automated daily backups for PostgreSQL, MySQL, and MongoDB with configurable retention policies. Backups are encrypted and stored off-server — in S3-compatible storage or a separate VPS. We verify restores on request.</p></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner" data-animate="fade-up">
+          <h2>Ready to Hand Off Your Infrastructure?</h2>
+          <p>We'll audit your current setup, scope the migration or onboarding, and send you a fixed-price proposal within 48 hours.</p>
+          <a href="../../contact" class="btn">Request a Quote</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../../" class="site-logo"><span class="site-logo__text">Tinaht</span></a>
+          <p>Scalable, secure technology solutions for startups and businesses that demand more.</p>
+        </div>
+        <div><h4 class="footer-heading">Services</h4><ul class="footer-links"><li><a href="../ai-automation">AI Automation</a></li><li><a href="../managed-hosting">Managed Hosting</a></li><li><a href="../network-consulting">Network Consulting</a></li><li><a href="../../services#cybersecurity">Cybersecurity</a></li><li><a href="../../services#speed-optimization">Speed Optimization</a></li></ul></div>
+        <div><h4 class="footer-heading">Company</h4><ul class="footer-links"><li><a href="../../about">About</a></li><li><a href="../../portfolio">Portfolio</a></li><li><a href="../../blog">Blog</a></li><li><a href="../../contact">Contact</a></li></ul></div>
+        <div><h4 class="footer-heading">Legal</h4><ul class="footer-links"><li><a href="../../privacy">Privacy Policy</a></li><li><a href="../../terms">Terms of Service</a></li><li><a href="../../refund-policy">Refund Policy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Tinaht. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>
