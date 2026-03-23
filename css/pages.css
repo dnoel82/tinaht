@@ -1017,9 +1017,114 @@
 }
 
 /* ------------------------------------------------------------
+   BLOG ARTICLE PAGE
+   ------------------------------------------------------------ */
+
+.page-hero--article {
+  padding-bottom: 40px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-gray-500);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--color-gray-500);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: start;
+}
+
+.article-body {
+  min-width: 0;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+.article-body h2 {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 40px 0 16px;
+}
+
+.article-body p {
+  margin-bottom: 20px;
+  color: var(--color-gray-400);
+}
+
+.article-body ul, .article-body ol {
+  padding-left: 24px;
+  margin-bottom: 20px;
+  color: var(--color-gray-400);
+}
+
+.article-body li {
+  margin-bottom: 8px;
+}
+
+.article-body pre {
+  background: #0d1117;
+  border: 1px solid var(--color-gray-700);
+  border-radius: 8px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin-bottom: 24px;
+}
+
+.article-body code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  color: #e6edf3;
+  line-height: 1.6;
+}
+
+.article-body p code, .article-body li code {
+  background: var(--color-gray-900);
+  border: 1px solid var(--color-gray-700);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 14px;
+  color: var(--color-primary);
+}
+
+.article-body strong {
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.article-body a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.article-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+/* ------------------------------------------------------------
    RESPONSIVE -- All Inner Pages
    ------------------------------------------------------------ */
 @media (max-width: 1024px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .article-sidebar { position: static; }
   .pillar-grid { grid-template-columns: repeat(2, 1fr); }
   .about-story { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
