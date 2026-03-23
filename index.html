@@ -31,7 +31,7 @@
   <meta name="twitter:title" content="Tinaht — AI Automation & Managed Hosting | Littleton, MA">
   <meta name="twitter:description" content="AI automation, managed Docker hosting, and network consulting for startups and SMBs in Littleton, MA.">
 
-  <!-- Schema.org JSON-LD -->
+  <!-- Schema.org JSON-LD — Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,8 +39,46 @@
     "name": "Tinaht",
     "url": "https://tinaht.com",
     "logo": "https://tinaht.com/assets/images/logos/logo-wordmark.png",
-    "description": "Technology solutions provider specializing in AI automation, managed hosting, and network infrastructure consulting.",
+    "description": "AI automation, managed Docker hosting, and network consulting for startups and SMBs.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Littleton",
+      "addressRegion": "MA",
+      "addressCountry": "US"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "url": "https://tinaht.com/contact",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Technology Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Automation Agency" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Managed Docker Hosting & DevOps" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Network Infrastructure Consulting" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cybersecurity Consulting" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Speed Optimization" } }
+      ]
+    },
     "sameAs": []
+  }
+  </script>
+  <!-- Schema.org JSON-LD — WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Tinaht",
+    "url": "https://tinaht.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://tinaht.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   }
   </script>
 </head>
