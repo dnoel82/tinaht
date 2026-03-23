@@ -355,7 +355,6 @@
           TinahtData.save('blogs', existing);
           showToast(newPosts.length + ' new post(s) synced from live site', 'success');
         }
-        // Also seed testimonials/team if empty
         if (!(TinahtData.getAll('testimonials') || []).length && data.testimonials) {
           TinahtData.save('testimonials', data.testimonials);
         }
@@ -363,7 +362,17 @@
           TinahtData.save('team', data.team);
         }
       }
-      renderList();
+      // Sync portfolio from projects.json if empty
+      if (!(TinahtData.getAll('portfolio') || []).length) {
+        TinahtData.fetchPublishedProjects().then(function (projects) {
+          if (projects && projects.length > 0) {
+            TinahtData.save('portfolio', projects);
+          }
+          renderList();
+        });
+      } else {
+        renderList();
+      }
     });
   }
 
@@ -405,7 +414,7 @@
   function renderList() {
     var items = TinahtData.getAll(currentTab) || [];
     if (items.length === 0) {
-      var labels = { blogs: 'blog post', testimonials: 'testimonial', team: 'team member' };
+      var labels = { blogs: 'blog post', portfolio: 'portfolio project', testimonials: 'testimonial', team: 'team member' };
       contentGrid.innerHTML =
         '<div class="admin-empty">' +
         '<div class="admin-empty__icon">+</div>' +
@@ -449,6 +458,23 @@
           '</div>' +
           '</div>';
       });
+    } else if (currentTab === 'portfolio') {
+      items.forEach(function (item) {
+        html +=
+          '<div class="admin-item">' +
+          '<div class="admin-item__header">' +
+          '<span class="admin-item__tag">' + escapeHTML(item.category || '') + '</span>' +
+          '</div>' +
+          (item.thumbnailUrl ? '<img src="' + escapeHTML(item.thumbnailUrl) + '" alt="" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:12px;">' : '') +
+          '<h4 class="admin-item__title">' + escapeHTML(item.title) + '</h4>' +
+          '<p class="admin-item__text">' + escapeHTML(truncate(item.shortDescription, 100)) + '</p>' +
+          '<p class="admin-item__meta">' + escapeHTML(item.clientName || '') + (item.completionDate ? ' &bull; ' + formatDate(item.completionDate) : '') + '</p>' +
+          '<div class="admin-item__actions">' +
+          '<button class="btn btn-secondary" data-edit="' + escapeHTML(item.slug) + '">Edit</button>' +
+          '<button class="btn btn-danger btn-secondary" data-delete="' + escapeHTML(item.slug) + '">Delete</button>' +
+          '</div>' +
+          '</div>';
+      });
     } else if (currentTab === 'team') {
       items.forEach(function (item) {
         html +=
@@ -470,13 +496,24 @@
     contentGrid.querySelectorAll('[data-edit]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var id = btn.getAttribute('data-edit');
-        openModal(TinahtData.getById(currentTab, id));
+        if (currentTab === 'portfolio') {
+          var items = TinahtData.getAll('portfolio') || [];
+          openModal(items.find(function (p) { return p.slug === id; }) || null);
+        } else {
+          openModal(TinahtData.getById(currentTab, id));
+        }
       });
     });
     contentGrid.querySelectorAll('[data-delete]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         deleteId = btn.getAttribute('data-delete');
-        var item = TinahtData.getById(currentTab, deleteId);
+        var item;
+        if (currentTab === 'portfolio') {
+          var items = TinahtData.getAll('portfolio') || [];
+          item = items.find(function (p) { return p.slug === deleteId; });
+        } else {
+          item = TinahtData.getById(currentTab, deleteId);
+        }
         var name = item ? (item.title || item.authorName || item.name || 'this item') : 'this item';
         confirmMessage.textContent = 'Are you sure you want to delete "' + name + '"? This cannot be undone.';
         confirmDialog.classList.add('is-open');
@@ -487,9 +524,9 @@
   // ── Modal Form ─────────────────────────────────────────────
 
   function openModal(item) {
-    editingId = item ? item.id : null;
+    editingId = item ? (currentTab === 'portfolio' ? item.slug : item.id) : null;
     modalTitle.textContent = (item ? 'Edit' : 'Add') + ' ' +
-      { blogs: 'Blog Post', testimonials: 'Testimonial', team: 'Team Member' }[currentTab];
+      { blogs: 'Blog Post', portfolio: 'Portfolio Project', testimonials: 'Testimonial', team: 'Team Member' }[currentTab];
 
     var html = '';
 
@@ -579,6 +616,97 @@
           });
         }
       }, 0);
+    } else if (currentTab === 'portfolio') {
+      var portCategories = ['AI Automation', 'Hosting & DevOps', 'Networking', 'Cybersecurity', 'Web Optimization'];
+      var techVal = item && item.technologies ? item.technologies.join(', ') : '';
+      var galleryVal = item && item.gallery ? item.gallery.join('\n') : '';
+      html =
+        '<div class="admin-form__row">' +
+        '<div class="form-group">' +
+        '<label for="f-title">Project Title *</label>' +
+        '<input type="text" id="f-title" class="form-input" required value="' + escapeHTML(item ? item.title : '') + '">' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-slug">Slug *</label>' +
+        '<div style="display:flex;gap:8px;">' +
+        '<input type="text" id="f-slug" class="form-input" required placeholder="my-project" value="' + escapeHTML(item ? item.slug : '') + '">' +
+        '<button type="button" id="f-slug-gen" class="btn btn-secondary btn-sm" style="white-space:nowrap;flex-shrink:0;">Auto</button>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="admin-form__row">' +
+        '<div class="form-group">' +
+        '<label for="f-category">Category *</label>' +
+        '<select id="f-category" class="form-input">' +
+        portCategories.map(function (c) { return '<option value="' + c + '"' + (item && item.category === c ? ' selected' : '') + '>' + c + '</option>'; }).join('') +
+        '</select>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-completionDate">Completion Date</label>' +
+        '<input type="date" id="f-completionDate" class="form-input" value="' + escapeHTML(item ? (item.completionDate || '') : '') + '">' +
+        '</div>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-clientName">Client Name</label>' +
+        '<input type="text" id="f-clientName" class="form-input" placeholder="Acme Corp" value="' + escapeHTML(item ? (item.clientName || '') : '') + '">' +
+        '</div>' +
+        '<div class="admin-form__row">' +
+        '<div class="form-group">' +
+        '<label for="f-thumbnailUrl">Thumbnail Image URL</label>' +
+        '<input type="text" id="f-thumbnailUrl" class="form-input" placeholder="https://images.unsplash.com/..." value="' + escapeHTML(item ? (item.thumbnailUrl || '') : '') + '">' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-heroImageUrl">Hero Image URL</label>' +
+        '<input type="text" id="f-heroImageUrl" class="form-input" placeholder="https://images.unsplash.com/..." value="' + escapeHTML(item ? (item.heroImageUrl || '') : '') + '">' +
+        '</div>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-shortDescription">Short Description *</label>' +
+        '<textarea id="f-shortDescription" class="form-input" required rows="2">' + escapeHTML(item ? (item.shortDescription || '') : '') + '</textarea>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-fullDescription">Full Description</label>' +
+        '<textarea id="f-fullDescription" class="form-input" rows="3">' + escapeHTML(item ? (item.fullDescription || '') : '') + '</textarea>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-challenge">Challenge</label>' +
+        '<textarea id="f-challenge" class="form-input" rows="3">' + escapeHTML(item ? (item.challenge || '') : '') + '</textarea>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-solution">Solution</label>' +
+        '<textarea id="f-solution" class="form-input" rows="3">' + escapeHTML(item ? (item.solution || '') : '') + '</textarea>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-result">Result</label>' +
+        '<textarea id="f-result" class="form-input" rows="3">' + escapeHTML(item ? (item.result || '') : '') + '</textarea>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-technologies">Technologies <span style="font-weight:400;color:var(--color-gray-500)">(comma-separated)</span></label>' +
+        '<input type="text" id="f-technologies" class="form-input" placeholder="Docker, Python, n8n" value="' + escapeHTML(techVal) + '">' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-gallery">Gallery Image URLs <span style="font-weight:400;color:var(--color-gray-500)">(one per line)</span></label>' +
+        '<textarea id="f-gallery" class="form-input" rows="3" placeholder="https://images.unsplash.com/...">' + escapeHTML(galleryVal) + '</textarea>' +
+        '</div>' +
+        '<div class="admin-form__footer">' +
+        '<button type="button" class="btn btn-secondary admin-modal-cancel">Cancel</button>' +
+        '<button type="submit" class="btn btn-primary">Save Project</button>' +
+        '</div>';
+
+      setTimeout(function () {
+        var titleInput = document.getElementById('f-title');
+        var slugInput = document.getElementById('f-slug');
+        var slugGenBtn = document.getElementById('f-slug-gen');
+        if (!slugInput) return;
+        slugGenBtn.addEventListener('click', function () {
+          slugInput.value = slugify(titleInput.value);
+        });
+        if (!item) {
+          titleInput.addEventListener('blur', function () {
+            if (!slugInput.value) slugInput.value = slugify(titleInput.value);
+          });
+        }
+      }, 0);
     } else if (currentTab === 'testimonials') {
       html =
         '<div class="form-group">' +
@@ -653,7 +781,42 @@
     e.preventDefault();
     var item = {};
 
-    if (currentTab === 'blogs') {
+    if (currentTab === 'portfolio') {
+      var techRaw = document.getElementById('f-technologies').value.trim();
+      var galleryRaw = document.getElementById('f-gallery').value.trim();
+      item = {
+        slug: document.getElementById('f-slug').value.trim(),
+        title: document.getElementById('f-title').value.trim(),
+        category: document.getElementById('f-category').value,
+        clientName: document.getElementById('f-clientName').value.trim(),
+        completionDate: document.getElementById('f-completionDate').value,
+        thumbnailUrl: document.getElementById('f-thumbnailUrl').value.trim(),
+        heroImageUrl: document.getElementById('f-heroImageUrl').value.trim(),
+        shortDescription: document.getElementById('f-shortDescription').value.trim(),
+        fullDescription: document.getElementById('f-fullDescription').value.trim(),
+        challenge: document.getElementById('f-challenge').value.trim(),
+        solution: document.getElementById('f-solution').value.trim(),
+        result: document.getElementById('f-result').value.trim(),
+        technologies: techRaw ? techRaw.split(',').map(function (t) { return t.trim(); }).filter(Boolean) : [],
+        gallery: galleryRaw ? galleryRaw.split('\n').map(function (u) { return u.trim(); }).filter(Boolean) : []
+      };
+      // Portfolio uses slug as unique key — update by slug, add if new
+      var allProjects = TinahtData.getAll('portfolio') || [];
+      var existing = allProjects.find(function (p) { return p.slug === (editingId || item.slug); });
+      if (existing) {
+        var idx = allProjects.indexOf(existing);
+        allProjects[idx] = item;
+        TinahtData.save('portfolio', allProjects);
+        showToast('Project updated successfully', 'success');
+      } else {
+        allProjects.push(item);
+        TinahtData.save('portfolio', allProjects);
+        showToast('Project added successfully', 'success');
+      }
+      closeModal();
+      renderList();
+      return;
+    } else if (currentTab === 'blogs') {
       var slugVal = document.getElementById('f-slug').value.trim();
       item = {
         title: document.getElementById('f-title').value.trim(),
@@ -730,7 +893,12 @@
       renderList();
     } else if (deleteId) {
       if (currentTab === 'blogs') TinahtData.removeBlogBody(deleteId);
-      TinahtData.remove(currentTab, deleteId);
+      if (currentTab === 'portfolio') {
+        var projects = TinahtData.getAll('portfolio') || [];
+        TinahtData.save('portfolio', projects.filter(function (p) { return p.slug !== deleteId; }));
+      } else {
+        TinahtData.remove(currentTab, deleteId);
+      }
       showToast('Item deleted', 'success');
       deleteId = null;
       confirmDialog.classList.remove('is-open');
@@ -1020,6 +1188,21 @@
         });
       }
       return res.json();
+    })
+    .then(function () {
+      // Push projects.json
+      var projContent = TinahtData.buildProjectsPayload();
+      var projApiUrl = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/data/projects.json';
+      return fetch(projApiUrl + '?ref=' + GH_BRANCH, {
+        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+      })
+      .then(function (res) { return res.status === 404 ? { sha: null } : res.json(); })
+      .then(function (fileData) {
+        var body = { message: 'Update portfolio via admin panel', content: btoa(unescape(encodeURIComponent(projContent))), branch: GH_BRANCH };
+        if (fileData.sha) body.sha = fileData.sha;
+        return fetch(projApiUrl, { method: 'PUT', headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      })
+      .then(function (res) { if (!res.ok) return res.json().then(function (e) { throw new Error(e.message); }); return res.json(); });
     })
     .then(function () {
       // Push any blog post HTML pages

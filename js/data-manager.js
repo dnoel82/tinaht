@@ -9,7 +9,8 @@
   var KEYS = {
     blogs: 'tinaht_blogs',
     testimonials: 'tinaht_testimonials',
-    team: 'tinaht_team'
+    team: 'tinaht_team',
+    portfolio: 'tinaht_portfolio'
   };
 
   var CATEGORIES = {
@@ -156,6 +157,20 @@
     return _published[type] || null;
   }
 
+  // ── Projects payload (data/projects.json) ─────────────────
+  function buildProjectsPayload() {
+    return JSON.stringify(getAll('portfolio') || [], null, 2);
+  }
+
+  function fetchPublishedProjects() {
+    var basePath = '';
+    if (window.location.pathname.indexOf('/admin') !== -1) basePath = '../';
+    var url = basePath + 'data/projects.json?v=' + Date.now();
+    return fetch(url)
+      .then(function (res) { if (!res.ok) throw new Error('Failed to fetch projects.json'); return res.json(); })
+      .catch(function () { return null; });
+  }
+
   // ── Blog body storage (per-post, not in content.json) ────
   var BLOG_BODY_PREFIX = 'tinaht_blog_body_';
 
@@ -207,6 +222,8 @@
     buildPublishPayload: buildPublishPayload,
     getBlogBody: getBlogBody,
     saveBlogBody: saveBlogBody,
-    removeBlogBody: removeBlogBody
+    removeBlogBody: removeBlogBody,
+    buildProjectsPayload: buildProjectsPayload,
+    fetchPublishedProjects: fetchPublishedProjects
   };
 })();
