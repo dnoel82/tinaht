@@ -36,6 +36,10 @@
     var featuredEl = document.querySelector('.blog-featured');
     if (featuredEl) {
       featuredEl.setAttribute('data-category', featured.category || '');
+      if (featured.url) {
+        featuredEl.style.cursor = 'pointer';
+        featuredEl.onclick = function () { window.location.href = featured.url; };
+      }
       featuredEl.innerHTML =
         '<div class="blog-featured__image">' +
         (featured.imageUrl ? '<img src="' + escapeHTML(featured.imageUrl) + '" alt="' + escapeHTML(featured.title) + '" loading="lazy">' : '') +
@@ -43,9 +47,7 @@
         '</div>' +
         '<div class="blog-featured__content">' +
         '<span class="card__tag">' + escapeHTML(TinahtData.CATEGORIES[featured.category] || featured.category) + '</span>' +
-        (featured.url
-          ? '<h2><a href="' + escapeHTML(featured.url) + '" style="color:inherit;text-decoration:none;">' + escapeHTML(featured.title) + '</a></h2>'
-          : '<h2>' + escapeHTML(featured.title) + '</h2>') +
+        '<h2>' + escapeHTML(featured.title) + '</h2>' +
         '<p>' + escapeHTML(featured.description) + '</p>' +
         '<div class="blog-featured__meta">' +
         '<span>' + escapeHTML(featured.author) + '</span>' +
@@ -74,29 +76,26 @@
       var html = '';
 
       nonFeatured.forEach(function (post) {
-        var titleHtml = post.url
-          ? '<h3 class="card__title"><a href="' + escapeHTML(post.url) + '" style="color:inherit;text-decoration:none;">' + escapeHTML(post.title) + '</a></h3>'
-          : '<h3 class="card__title">' + escapeHTML(post.title) + '</h3>';
-        var imageHtml = post.imageUrl
-          ? (post.url
-              ? '<a href="' + escapeHTML(post.url) + '"><img src="' + escapeHTML(post.imageUrl) + '" alt="' + escapeHTML(post.title) + '" loading="lazy"></a>'
-              : '<img src="' + escapeHTML(post.imageUrl) + '" alt="' + escapeHTML(post.title) + '" loading="lazy">')
-          : '';
+        var cardOpen = post.url
+          ? '<a href="' + escapeHTML(post.url) + '" class="card blog-card blog-card--link" data-category="' + escapeHTML(post.category) + '" style="display:block;text-decoration:none;color:inherit;">'
+          : '<article class="card blog-card" data-category="' + escapeHTML(post.category) + '">';
+        var cardClose = post.url ? '</a>' : '</article>';
+
         html +=
-          '<article class="card blog-card" data-category="' + escapeHTML(post.category) + '">' +
+          cardOpen +
           '<div class="card__image">' +
-          imageHtml +
+          (post.imageUrl ? '<img src="' + escapeHTML(post.imageUrl) + '" alt="' + escapeHTML(post.title) + '" loading="lazy">' : '') +
           '<div class="card__image-overlay"></div>' +
           '</div>' +
           '<span class="card__tag">' + escapeHTML(TinahtData.CATEGORIES[post.category] || post.category) + '</span>' +
-          titleHtml +
+          '<h3 class="card__title">' + escapeHTML(post.title) + '</h3>' +
           '<p class="card__text">' + escapeHTML(post.description) + '</p>' +
           '<div class="blog-featured__meta" style="padding:0 24px 20px;">' +
           '<span>' + escapeHTML(post.author) + '</span>' +
           '<span>&bull;</span>' +
           '<span>' + formatDate(post.date) + '</span>' +
           '</div>' +
-          '</article>';
+          cardClose;
       });
 
       grid.innerHTML = html;

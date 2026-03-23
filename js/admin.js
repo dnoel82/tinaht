@@ -105,8 +105,20 @@
   function showAdmin() {
     gate.classList.add('is-hidden');
     adminBody.classList.add('is-visible');
-    renderList();
     updatePublishStatus();
+
+    // If localStorage has no blogs yet, auto-load from published content.json
+    if (!TinahtData.getAll('blogs')) {
+      TinahtData.fetchPublished().then(function (data) {
+        if (data && data.blogs && data.blogs.length > 0) {
+          TinahtData.importAll(JSON.stringify(data));
+          showToast('Loaded published content into editor', 'success');
+        }
+        renderList();
+      });
+    } else {
+      renderList();
+    }
   }
 
   function logout() {
@@ -483,6 +495,19 @@
 
   var SEED_DATA = {
     blogs: [
+      {
+        id: 'blog-n8n-slack-automation',
+        title: 'How to Automate Slack Notifications with n8n',
+        category: 'ai-automation',
+        categoryLabel: 'AI & Automation',
+        imageUrl: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80',
+        description: 'Build webhook-triggered Slack notifications using n8n on Docker — no per-task fees, no third-party middlemen. Real config from Tinaht\'s stack.',
+        author: 'Djonny Noel',
+        date: '2026-03-23',
+        readTime: '9 min read',
+        url: '/blog/n8n-slack-automation',
+        featured: false
+      },
       {
         id: 'seed-blog-1',
         title: 'How AI Workflow Automation Is Transforming Small Business Operations',
