@@ -287,7 +287,7 @@
         var htmlContent = generateBlogHTML(post, bodyHtml);
         var filePath = 'blog/' + post.slug + '/index.html';
         var apiUrl = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + filePath;
-        return fetch(apiUrl + '?ref=' + GH_BRANCH, {
+        return fetch(apiUrl + '?ref=' + GH_BRANCH + '&t=' + Date.now(), {
           headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
         })
         .then(function (res) {
@@ -1146,7 +1146,7 @@
     var apiUrl = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + GH_FILE;
 
     // Step 1: Get current file SHA (needed for update)
-    fetch(apiUrl + '?ref=' + GH_BRANCH, {
+    fetch(apiUrl + '?ref=' + GH_BRANCH + '&t=' + Date.now(), {
       headers: {
         'Authorization': 'token ' + token,
         'Accept': 'application/vnd.github.v3+json'
@@ -1193,7 +1193,7 @@
       // Push projects.json
       var projContent = TinahtData.buildProjectsPayload();
       var projApiUrl = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/data/projects.json';
-      return fetch(projApiUrl + '?ref=' + GH_BRANCH, {
+      return fetch(projApiUrl + '?ref=' + GH_BRANCH + '&t=' + Date.now(), {
         headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
       })
       .then(function (res) { return res.status === 404 ? { sha: null } : res.json(); })
