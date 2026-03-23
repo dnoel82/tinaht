@@ -30,6 +30,7 @@
   var importBtn = document.getElementById('import-btn');
   var importFile = document.getElementById('import-file');
   var clearBtn = document.getElementById('clear-btn');
+  var syncBtn = document.getElementById('sync-btn');
   var contentGrid = document.getElementById('admin-content');
   var modal = document.getElementById('admin-modal');
   var modalTitle = document.getElementById('modal-title');
@@ -82,6 +83,241 @@
 
   function checkPassword(password) {
     return password === ADMIN_PASS;
+  }
+
+  function slugify(str) {
+    return (str || '').toLowerCase()
+      .replace(/[àáâãäå]/g, 'a').replace(/[èéêë]/g, 'e')
+      .replace(/[ìíîï]/g, 'i').replace(/[òóôõö]/g, 'o').replace(/[ùúûü]/g, 'u')
+      .replace(/[^a-z0-9\s-]/g, '').trim()
+      .replace(/[\s]+/g, '-').replace(/-+/g, '-');
+  }
+
+  function generateBlogHTML(post, bodyHtml) {
+    var slug = post.slug || slugify(post.title);
+    var canonicalUrl = 'https://tinaht.com/blog/' + slug;
+    var dateFormatted = formatDate(post.date);
+    var categoryLabel = TinahtData.CATEGORIES[post.category] || post.category || '';
+    var imageHtml = post.imageUrl
+      ? '<img src="' + post.imageUrl + '" alt="' + escapeHTML(post.title) + '" style="width:100%;border-radius:12px;margin-bottom:40px;" loading="eager">'
+      : '';
+    var breadcrumbTitle = post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title;
+    var L = [];
+    L.push('<!DOCTYPE html>');
+    L.push('<html lang="en">');
+    L.push('<head>');
+    L.push('  <meta charset="UTF-8">');
+    L.push('  <meta name="viewport" content="width=device-width, initial-scale=1.0">');
+    L.push('  <title>' + escapeHTML(post.title) + ' | Tinaht Blog</title>');
+    L.push('  <meta name="description" content="' + escapeHTML(post.description) + '">');
+    L.push('  <link rel="icon" type="image/png" href="../../assets/images/logos/favicon-source.png">');
+    L.push('  <link rel="preconnect" href="https://fonts.googleapis.com">');
+    L.push('  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
+    L.push('  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;700&family=Montserrat:wght@500;600;800&family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet">');
+    L.push('  <link rel="stylesheet" href="../../css/global.css">');
+    L.push('  <link rel="stylesheet" href="../../css/components.css">');
+    L.push('  <link rel="stylesheet" href="../../css/portfolio.css">');
+    L.push('  <link rel="stylesheet" href="../../css/pages.css">');
+    L.push('  <meta property="og:title" content="' + escapeHTML(post.title) + '">');
+    L.push('  <meta property="og:description" content="' + escapeHTML(post.description) + '">');
+    L.push('  <meta property="og:type" content="article">');
+    L.push('  <meta property="og:url" content="' + canonicalUrl + '">');
+    if (post.imageUrl) L.push('  <meta property="og:image" content="' + escapeHTML(post.imageUrl) + '">');
+    L.push('  <meta name="twitter:card" content="summary_large_image">');
+    L.push('  <meta name="twitter:title" content="' + escapeHTML(post.title) + '">');
+    L.push('  <meta name="twitter:description" content="' + escapeHTML(post.description) + '">');
+    L.push('  <script type="application/ld+json">');
+    L.push('  {');
+    L.push('    "@context": "https://schema.org",');
+    L.push('    "@type": "BlogPosting",');
+    L.push('    "headline": ' + JSON.stringify(post.title) + ',');
+    L.push('    "description": ' + JSON.stringify(post.description) + ',');
+    if (post.imageUrl) L.push('    "image": ' + JSON.stringify(post.imageUrl) + ',');
+    L.push('    "author": {"@type":"Person","name":' + JSON.stringify(post.author || 'Djonny Noel') + ',"url":"https://tinaht.com/about"},');
+    L.push('    "publisher": {"@type":"Organization","name":"Tinaht","logo":{"@type":"ImageObject","url":"https://tinaht.com/assets/images/logos/logo-wordmark.png"}},');
+    L.push('    "datePublished": ' + JSON.stringify(post.date || '') + ',');
+    L.push('    "dateModified": ' + JSON.stringify(post.date || '') + ',');
+    L.push('    "mainEntityOfPage": {"@type":"WebPage","@id":' + JSON.stringify(canonicalUrl) + '},');
+    L.push('    "articleSection": ' + JSON.stringify(categoryLabel));
+    L.push('  }');
+    L.push('  <\/script>');
+    L.push('  <script type="application/ld+json">');
+    L.push('  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[');
+    L.push('    {"@type":"ListItem","position":1,"name":"Home","item":"https://tinaht.com/"},');
+    L.push('    {"@type":"ListItem","position":2,"name":"Blog","item":"https://tinaht.com/blog"},');
+    L.push('    {"@type":"ListItem","position":3,"name":' + JSON.stringify(post.title) + ',"item":' + JSON.stringify(canonicalUrl) + '}');
+    L.push('  ]}');
+    L.push('  <\/script>');
+    L.push('</head>');
+    L.push('<body>');
+    L.push('  <a href="#main-content" class="sr-only">Skip to main content</a>');
+    L.push('  <header class="site-header" role="banner">');
+    L.push('    <div class="container">');
+    L.push('      <a href="../../" class="site-logo" aria-label="Tinaht home"><span class="site-logo__text">Tinaht</span></a>');
+    L.push('      <nav class="nav-list-desktop" aria-label="Primary navigation">');
+    L.push('        <ul class="nav-list">');
+    L.push('          <li><a href="../../">Home</a></li>');
+    L.push('          <li><a href="../../portfolio">Portfolio</a></li>');
+    L.push('          <li><a href="../../services">Services</a></li>');
+    L.push('          <li><a href="../../about">About</a></li>');
+    L.push('          <li><a href="../../blog" class="active">Blog</a></li>');
+    L.push('          <li><a href="../../contact" class="btn btn-primary btn-sm">Contact</a></li>');
+    L.push('        </ul>');
+    L.push('      </nav>');
+    L.push('      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>');
+    L.push('    </div>');
+    L.push('  </header>');
+    L.push('  <div class="drawer-overlay" aria-hidden="true"></div>');
+    L.push('  <nav class="mobile-drawer" aria-label="Mobile navigation">');
+    L.push('    <ul class="nav-list">');
+    L.push('      <li><a href="../../">Home</a></li>');
+    L.push('      <li><a href="../../portfolio">Portfolio</a></li>');
+    L.push('      <li><a href="../../services">Services</a></li>');
+    L.push('      <li><a href="../../about">About</a></li>');
+    L.push('      <li><a href="../../blog">Blog</a></li>');
+    L.push('      <li><a href="../../contact">Contact</a></li>');
+    L.push('    </ul>');
+    L.push('  </nav>');
+    L.push('  <main id="main-content">');
+    L.push('    <section class="page-hero page-hero--article">');
+    L.push('      <div class="container">');
+    L.push('        <nav class="breadcrumb" aria-label="Breadcrumb">');
+    L.push('          <a href="../../">Home</a>');
+    L.push('          <span aria-hidden="true">/</span>');
+    L.push('          <a href="../../blog">Blog</a>');
+    L.push('          <span aria-hidden="true">/</span>');
+    L.push('          <span>' + escapeHTML(breadcrumbTitle) + '</span>');
+    L.push('        </nav>');
+    L.push('        <span class="card__tag" style="margin-bottom:16px;display:inline-block;">' + escapeHTML(categoryLabel) + '</span>');
+    L.push('        <h1>' + escapeHTML(post.title) + '</h1>');
+    L.push('        <div class="blog-featured__meta" style="margin-top:16px;">');
+    L.push('          <span>' + escapeHTML(post.author || 'Djonny Noel') + '</span>');
+    L.push('          <span>&bull;</span>');
+    L.push('          <span>' + dateFormatted + '</span>');
+    if (post.readTime) {
+      L.push('          <span>&bull;</span>');
+      L.push('          <span>' + escapeHTML(post.readTime) + '</span>');
+    }
+    L.push('        </div>');
+    L.push('      </div>');
+    L.push('    </section>');
+    L.push('    <section class="section">');
+    L.push('      <div class="container">');
+    L.push('        <div class="article-layout">');
+    L.push('          <article class="article-body">');
+    if (imageHtml) L.push('            ' + imageHtml);
+    L.push('            ' + (bodyHtml || '<p>' + escapeHTML(post.description) + '</p>'));
+    L.push('          </article>');
+    L.push('          <aside class="article-sidebar">');
+    L.push('            <div style="background:var(--color-gray-900);border-radius:12px;padding:24px;margin-bottom:24px;">');
+    L.push('              <h4 style="margin-bottom:16px;">About Tinaht</h4>');
+    L.push('              <p style="color:var(--color-gray-400);font-size:14px;line-height:1.6;">We build scalable technology solutions \u2014 AI automation, managed hosting, and network infrastructure \u2014 for startups and growing businesses.</p>');
+    L.push('              <a href="../../contact" class="btn btn-primary" style="margin-top:16px;width:100%;text-align:center;display:block;">Work With Us</a>');
+    L.push('            </div>');
+    L.push('            <div style="background:var(--color-gray-900);border-radius:12px;padding:24px;">');
+    L.push('              <h4 style="margin-bottom:12px;">More Articles</h4>');
+    L.push('              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">');
+    L.push('                <li><a href="../../blog" style="color:var(--color-gray-400);font-size:14px;">View all blog posts &rarr;</a></li>');
+    L.push('              </ul>');
+    L.push('            </div>');
+    L.push('          </aside>');
+    L.push('        </div>');
+    L.push('      </div>');
+    L.push('    </section>');
+    L.push('  </main>');
+    L.push('  <footer class="site-footer" role="contentinfo">');
+    L.push('    <div class="container">');
+    L.push('      <div class="footer-grid">');
+    L.push('        <div class="footer-brand">');
+    L.push('          <a href="../../" class="site-logo"><span class="site-logo__text">Tinaht</span></a>');
+    L.push('          <p>Scalable, secure technology solutions for startups and businesses that demand more.</p>');
+    L.push('          <div class="footer-social">');
+    L.push('            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>');
+    L.push('            <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>');
+    L.push('          </div>');
+    L.push('        </div>');
+    L.push('        <div><h4 class="footer-heading">Services</h4><ul class="footer-links"><li><a href="../../services/ai-automation">AI Automation</a></li><li><a href="../../services/managed-hosting">Managed Hosting</a></li><li><a href="../../services/network-consulting">Network Consulting</a></li><li><a href="../../services#cybersecurity">Cybersecurity</a></li><li><a href="../../services#speed-optimization">Speed Optimization</a></li></ul></div>');
+    L.push('        <div><h4 class="footer-heading">Company</h4><ul class="footer-links"><li><a href="../../about">About</a></li><li><a href="../../portfolio">Portfolio</a></li><li><a href="../../blog">Blog</a></li><li><a href="../../contact">Contact</a></li></ul></div>');
+    L.push('        <div><h4 class="footer-heading">Legal</h4><ul class="footer-links"><li><a href="../../privacy">Privacy Policy</a></li><li><a href="../../terms">Terms of Service</a></li><li><a href="../../refund-policy">Refund Policy</a></li></ul></div>');
+    L.push('      </div>');
+    L.push('      <div class="footer-bottom"><p>&copy; 2026 Tinaht. All rights reserved.</p><ul class="footer-bottom-links"><li><a href="../../privacy">Privacy</a></li><li><a href="../../terms">Terms</a></li></ul></div>');
+    L.push('    </div>');
+    L.push('  </footer>');
+    L.push('  <script src="../../js/main.js" defer><\/script>');
+    L.push('</body>');
+    L.push('</html>');
+    return L.join('\n');
+  }
+
+  function syncFromLive() {
+    if (syncBtn) syncBtn.disabled = true;
+    TinahtData.fetchPublished().then(function (data) {
+      if (syncBtn) syncBtn.disabled = false;
+      if (!data || !data.blogs) {
+        showToast('Could not fetch live content', 'error');
+        return;
+      }
+      var existing = TinahtData.getAll('blogs') || [];
+      var existingIds = {};
+      existing.forEach(function (b) { existingIds[b.id] = true; });
+      var newPosts = data.blogs.filter(function (b) { return !existingIds[b.id]; });
+      if (newPosts.length === 0) {
+        showToast('Already up to date \u2014 no new posts on live site', 'success');
+        return;
+      }
+      newPosts.forEach(function (post) { existing.push(post); });
+      TinahtData.save('blogs', existing);
+      showToast('Synced ' + newPosts.length + ' new post(s) from live site', 'success');
+      renderList();
+    });
+  }
+
+  function pushBlogPages(token) {
+    var blogs = TinahtData.getAll('blogs') || [];
+    var postsWithPages = blogs.filter(function (b) {
+      return b.slug && TinahtData.getBlogBody(b.id);
+    });
+    if (postsWithPages.length === 0) return Promise.resolve(0);
+
+    var pushedCount = 0;
+    var chain = Promise.resolve();
+    postsWithPages.forEach(function (post) {
+      chain = chain.then(function () {
+        var bodyHtml = TinahtData.getBlogBody(post.id);
+        var htmlContent = generateBlogHTML(post, bodyHtml);
+        var filePath = 'blog/' + post.slug + '/index.html';
+        var apiUrl = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + filePath;
+        return fetch(apiUrl + '?ref=' + GH_BRANCH, {
+          headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+        })
+        .then(function (res) {
+          return res.status === 404 ? { sha: null } : res.json();
+        })
+        .then(function (fileData) {
+          var body = {
+            message: 'Publish blog post: ' + post.slug,
+            content: btoa(unescape(encodeURIComponent(htmlContent))),
+            branch: GH_BRANCH
+          };
+          if (fileData.sha) body.sha = fileData.sha;
+          return fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+              'Authorization': 'token ' + token,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+          });
+        })
+        .then(function (res) {
+          if (!res.ok) return res.json().then(function (err) { throw new Error(err.message || 'Failed to push ' + filePath); });
+          pushedCount++;
+          return res.json();
+        });
+      });
+    });
+    return chain.then(function () { return pushedCount; });
   }
 
   // ── GitHub Token Management ──────────────────────────────
@@ -177,6 +413,7 @@
           '<div class="admin-item__header">' +
           '<span class="admin-item__tag">' + escapeHTML(TinahtData.CATEGORIES[item.category] || item.category) + '</span>' +
           (item.featured ? '<span class="admin-item__featured">Featured</span>' : '') +
+          (item.slug && TinahtData.getBlogBody(item.id) ? '<span class="admin-item__featured" style="background:var(--color-primary);">Has Page</span>' : (item.slug ? '<span class="admin-item__featured" style="background:var(--color-gray-600);">Slug set</span>' : '')) +
           '</div>' +
           '<h4 class="admin-item__title">' + escapeHTML(item.title) + '</h4>' +
           '<p class="admin-item__text">' + escapeHTML(truncate(item.description, 100)) + '</p>' +
@@ -285,16 +522,53 @@
         '</div>' +
         '</div>' +
         '<div class="form-group">' +
-        '<label for="f-url">Post URL <span style="font-weight:400;color:var(--color-gray-500)">(optional — link to a dedicated post page, e.g. /blog/my-post)</span></label>' +
+        '<label for="f-url">Post URL <span style="font-weight:400;color:var(--color-gray-500)">(auto-filled from slug)</span></label>' +
         '<input type="text" id="f-url" class="form-input" placeholder="/blog/my-post" value="' + escapeHTML(item ? (item.url || '') : '') + '">' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-slug">Page Slug <span style="font-weight:400;color:var(--color-gray-500)">(creates /blog/<em>slug</em>/index.html when published)</span></label>' +
+        '<div style="display:flex;gap:8px;">' +
+        '<input type="text" id="f-slug" class="form-input" placeholder="my-post-title" value="' + escapeHTML(item ? (item.slug || '') : '') + '">' +
+        '<button type="button" id="f-slug-gen" class="btn btn-secondary btn-sm" style="white-space:nowrap;flex-shrink:0;">Auto-fill</button>' +
+        '</div>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<label for="f-bodyHtml">Blog Post Body (HTML) <span style="font-weight:400;color:var(--color-gray-500)">(optional — write full article content)</span></label>' +
+        '<textarea id="f-bodyHtml" class="form-input" rows="14" style="font-family:monospace;font-size:13px;resize:vertical;">' + escapeHTML(item && item.id ? TinahtData.getBlogBody(item.id) : '') + '</textarea>' +
+        '<p style="font-size:12px;color:var(--color-gray-500);margin-top:4px;">Use HTML: &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, etc. Publish pushes this as <code>blog/{slug}/index.html</code> to GitHub.</p>' +
         '</div>' +
         '<div class="form-group">' +
         '<label class="admin-form__checkbox"><input type="checkbox" id="f-featured"' + (item && item.featured ? ' checked' : '') + '><span>Featured Article</span></label>' +
         '</div>' +
         '<div class="admin-form__footer">' +
         '<button type="button" class="btn btn-secondary admin-modal-cancel">Cancel</button>' +
-        '<button type="submit" class="btn btn-primary">Save</button>' +
+        '<button type="submit" class="btn btn-primary">Save Post</button>' +
         '</div>';
+
+      // Wire up slug auto-fill after form renders
+      setTimeout(function () {
+        var titleInput = document.getElementById('f-title');
+        var slugInput = document.getElementById('f-slug');
+        var urlInput = document.getElementById('f-url');
+        var slugGenBtn = document.getElementById('f-slug-gen');
+        if (!slugInput) return;
+
+        function applySlug() {
+          var s = slugify(titleInput.value);
+          slugInput.value = s;
+          urlInput.value = s ? '/blog/' + s : '';
+        }
+        slugGenBtn.addEventListener('click', applySlug);
+        slugInput.addEventListener('input', function () {
+          urlInput.value = slugInput.value ? '/blog/' + slugInput.value : '';
+        });
+        // Auto-fill slug when adding new post and slug is empty
+        if (!item) {
+          titleInput.addEventListener('blur', function () {
+            if (!slugInput.value) applySlug();
+          });
+        }
+      }, 0);
     } else if (currentTab === 'testimonials') {
       html =
         '<div class="form-group">' +
@@ -370,6 +644,7 @@
     var item = {};
 
     if (currentTab === 'blogs') {
+      var slugVal = document.getElementById('f-slug').value.trim();
       item = {
         title: document.getElementById('f-title').value.trim(),
         category: document.getElementById('f-category').value,
@@ -379,7 +654,8 @@
         author: document.getElementById('f-author').value.trim() || 'Djonny Noel',
         date: document.getElementById('f-date').value,
         readTime: document.getElementById('f-readTime').value.trim(),
-        url: document.getElementById('f-url').value.trim() || null,
+        slug: slugVal || null,
+        url: document.getElementById('f-url').value.trim() || (slugVal ? '/blog/' + slugVal : null),
         featured: document.getElementById('f-featured').checked
       };
     } else if (currentTab === 'testimonials') {
@@ -399,12 +675,21 @@
       };
     }
 
+    var savedId;
     if (editingId) {
       TinahtData.update(currentTab, editingId, item);
+      savedId = editingId;
       showToast('Item updated successfully', 'success');
     } else {
-      TinahtData.add(currentTab, item);
+      var addedItem = TinahtData.add(currentTab, item);
+      savedId = addedItem.id;
       showToast('Item added successfully', 'success');
+    }
+
+    // Persist blog body HTML separately
+    if (currentTab === 'blogs') {
+      var bodyField = document.getElementById('f-bodyHtml');
+      if (bodyField) TinahtData.saveBlogBody(savedId, bodyField.value.trim());
     }
 
     closeModal();
@@ -434,6 +719,7 @@
       confirmDialog.classList.remove('is-open');
       renderList();
     } else if (deleteId) {
+      if (currentTab === 'blogs') TinahtData.removeBlogBody(deleteId);
       TinahtData.remove(currentTab, deleteId);
       showToast('Item deleted', 'success');
       deleteId = null;
@@ -650,6 +936,10 @@
     renderList();
   });
 
+  if (syncBtn) {
+    syncBtn.addEventListener('click', syncFromLive);
+  }
+
   // ── Publish to GitHub ──────────────────────────────────────
 
   function updatePublishStatus() {
@@ -722,8 +1012,15 @@
       return res.json();
     })
     .then(function () {
+      // Push any blog post HTML pages
+      return pushBlogPages(token);
+    })
+    .then(function (pageCount) {
       publishBtn.disabled = false;
-      publishStatus.textContent = 'Published successfully! Changes will be live in ~1 min.';
+      var msg = 'Published successfully!';
+      if (pageCount > 0) msg += ' ' + pageCount + ' blog page(s) pushed.';
+      msg += ' Changes live in ~1 min.';
+      publishStatus.textContent = msg;
       publishStatus.className = 'admin-publish-status is-success';
       showToast('Published to live site!', 'success');
     })

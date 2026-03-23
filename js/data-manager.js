@@ -156,10 +156,35 @@
     return _published[type] || null;
   }
 
+  // ── Blog body storage (per-post, not in content.json) ────
+  var BLOG_BODY_PREFIX = 'tinaht_blog_body_';
+
+  function getBlogBody(id) {
+    return localStorage.getItem(BLOG_BODY_PREFIX + id) || '';
+  }
+
+  function saveBlogBody(id, html) {
+    if (html) {
+      localStorage.setItem(BLOG_BODY_PREFIX + id, html);
+    } else {
+      localStorage.removeItem(BLOG_BODY_PREFIX + id);
+    }
+  }
+
+  function removeBlogBody(id) {
+    localStorage.removeItem(BLOG_BODY_PREFIX + id);
+  }
+
   // ── Build JSON for publishing to GitHub ───────────────────
   function buildPublishPayload() {
+    // Strip bodyHtml from blog posts — body is pushed as separate HTML files
+    var blogs = (getAll('blogs') || []).map(function(b) {
+      var clean = Object.assign({}, b);
+      delete clean.bodyHtml;
+      return clean;
+    });
     return JSON.stringify({
-      blogs: getAll('blogs') || [],
+      blogs: blogs,
       testimonials: getAll('testimonials') || [],
       team: getAll('team') || [],
       publishedAt: new Date().toISOString()
@@ -179,6 +204,9 @@
     clearAll: clearAll,
     fetchPublished: fetchPublished,
     getPublished: getPublished,
-    buildPublishPayload: buildPublishPayload
+    buildPublishPayload: buildPublishPayload,
+    getBlogBody: getBlogBody,
+    saveBlogBody: saveBlogBody,
+    removeBlogBody: removeBlogBody
   };
 })();
