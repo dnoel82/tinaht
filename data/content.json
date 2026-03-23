@@ -23,7 +23,6 @@
       "author": "Djonny Noel",
       "date": "2026-03-05",
       "readTime": "8 min read",
-      "url": "/blog/ai-workflow-automation-small-business",
       "featured": true
     },
     {
@@ -36,7 +35,6 @@
       "author": "Djonny Noel",
       "date": "2026-02-28",
       "readTime": "6 min read",
-      "url": "/blog/docker-vs-kubernetes",
       "featured": false
     },
     {
@@ -49,7 +47,6 @@
       "author": "Djonny Noel",
       "date": "2026-02-20",
       "readTime": "10 min read",
-      "url": "/blog/zero-trust-architecture",
       "featured": false
     },
     {
@@ -62,7 +59,18 @@
       "author": "Djonny Noel",
       "date": "2026-02-14",
       "readTime": "7 min read",
-      "url": "/blog/core-web-vitals-2026",
+      "featured": false
+    },
+    {
+      "id": "seed-blog-5",
+      "title": "Building Custom AI Chatbots: From Concept to Deployment",
+      "category": "ai-automation",
+      "categoryLabel": "AI & Automation",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80",
+      "description": "A technical walkthrough of designing, training, and deploying custom AI chatbots that actually solve customer problems.",
+      "author": "Djonny Noel",
+      "date": "2026-02-07",
+      "readTime": "12 min read",
       "featured": false
     },
     {
@@ -75,7 +83,6 @@
       "author": "Djonny Noel",
       "date": "2026-01-30",
       "readTime": "5 min read",
-      "url": "/blog/edge-computing-infrastructure",
       "featured": false
     },
     {
@@ -88,18 +95,17 @@
       "author": "Djonny Noel",
       "date": "2026-01-22",
       "readTime": "9 min read",
-      "url": "/blog/ssl-tls-best-practices-2026",
       "featured": false
     }
   ],
   "testimonials": [
     {
-      "id": "seed-test-1",
       "quote": "Tinaht transformed our network infrastructure. Their team delivered a solution that exceeded our expectations and reduced our downtime significantly. Highly recommended for any business.",
-      "authorName": "Sarah Mitchell",
+      "authorName": "Josemine Barthelemy",
+      "avatarInitials": "SM",
       "role": "CTO",
-      "company": "TechVenture Inc.",
-      "avatarInitials": "SM"
+      "company": "Tech Inc.",
+      "id": "seed-test-1"
     },
     {
       "id": "seed-test-2",
@@ -141,5 +147,5 @@
       "avatarInitials": "TH"
     }
   ],
-  "publishedAt": "2026-03-23T22:23:26.500Z"
+  "publishedAt": "2026-03-23T22:51:50.239Z"
 }
