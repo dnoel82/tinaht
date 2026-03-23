@@ -3,6 +3,8 @@
     "slug": "ecommerce-workflow-automation",
     "title": "E-commerce Workflow Automation",
     "category": "AI Automation",
+    "clientName": "RetailFlow Co.",
+    "completionDate": "2026-01-15",
     "thumbnailUrl": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80",
     "heroImageUrl": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1400&q=80",
     "shortDescription": "Automated order processing and inventory management for a growing online retailer, reducing manual tasks by 80%.",
@@ -10,15 +12,18 @@
     "challenge": "The client was processing over 500 orders daily with a small team, leading to frequent errors, delayed shipments, and poor customer satisfaction scores. Manual data entry between their Shopify store, warehouse system, and shipping providers was consuming 30+ hours per week.",
     "solution": "We designed and implemented an AI-powered automation pipeline using n8n workflows and custom API integrations. The system automatically syncs orders from Shopify, validates inventory in real-time, generates optimized picking lists, creates shipping labels via API, and sends personalized tracking notifications to customers.",
     "result": "Order processing time dropped from 15 minutes to under 30 seconds per order. Manual tasks were reduced by 80%, shipping errors decreased by 95%, and customer satisfaction scores improved from 3.2 to 4.8 stars. The client was able to handle 3x order volume without adding staff.",
+    "technologies": [
+      "n8n",
+      "Python",
+      "ShipStation",
+      "PostgreSQL",
+      "Docker"
+    ],
     "gallery": [
       "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
-    ],
-    "technologies": ["n8n", "Python", "Shopify API", "ShipStation", "PostgreSQL", "Docker"],
-    "clientName": "RetailFlow Co.",
-    "completionDate": "2026-01-15"
+    ]
   },
   {
     "slug": "multi-tenant-docker-platform",
@@ -37,7 +42,15 @@
       "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=800&q=80"
     ],
-    "technologies": ["Docker", "Docker Swarm", "Traefik", "GitHub Actions", "Prometheus", "Grafana", "Let's Encrypt"],
+    "technologies": [
+      "Docker",
+      "Docker Swarm",
+      "Traefik",
+      "GitHub Actions",
+      "Prometheus",
+      "Grafana",
+      "Let's Encrypt"
+    ],
     "clientName": "WebCraft Agency",
     "completionDate": "2025-11-20"
   },
@@ -58,7 +71,15 @@
       "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80"
     ],
-    "technologies": ["Cisco Catalyst", "Aruba Wireless", "Palo Alto Firewall", "802.1X", "OSPF", "Nagios", "Fiber Optics"],
+    "technologies": [
+      "Cisco Catalyst",
+      "Aruba Wireless",
+      "Palo Alto Firewall",
+      "802.1X",
+      "OSPF",
+      "Nagios",
+      "Fiber Optics"
+    ],
     "clientName": "Meridian Financial Group",
     "completionDate": "2025-09-10"
   },
@@ -79,7 +100,15 @@
       "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=800&q=80"
     ],
-    "technologies": ["Nessus", "Burp Suite", "Metasploit", "Wireshark", "KnowBe4", "Nmap", "OSSEC"],
+    "technologies": [
+      "Nessus",
+      "Burp Suite",
+      "Metasploit",
+      "Wireshark",
+      "KnowBe4",
+      "Nmap",
+      "OSSEC"
+    ],
     "clientName": "CareFirst Medical Group",
     "completionDate": "2025-12-01"
   },
@@ -100,7 +129,15 @@
       "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
     ],
-    "technologies": ["Webpack", "Cloudflare", "Redis", "PostgreSQL", "Lighthouse", "WebPageTest", "Service Workers"],
+    "technologies": [
+      "Webpack",
+      "Cloudflare",
+      "Redis",
+      "PostgreSQL",
+      "Lighthouse",
+      "WebPageTest",
+      "Service Workers"
+    ],
     "clientName": "AnalyticsPro Inc.",
     "completionDate": "2026-02-05"
   },
@@ -121,7 +158,15 @@
       "https://images.unsplash.com/photo-1531746790095-e5a41943218d?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1596348158371-d3a24dcba63e?auto=format&fit=crop&w=800&q=80"
     ],
-    "technologies": ["Python", "LangChain", "OpenAI API", "Zendesk API", "FastAPI", "Redis", "Docker"],
+    "technologies": [
+      "Python",
+      "LangChain",
+      "OpenAI API",
+      "Zendesk API",
+      "FastAPI",
+      "Redis",
+      "Docker"
+    ],
     "clientName": "PayStream Finance",
     "completionDate": "2026-02-20"
   }
