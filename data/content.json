@@ -108,20 +108,20 @@
       "id": "seed-test-1"
     },
     {
-      "id": "seed-test-2",
       "quote": "The AI automation solutions from Tinaht saved us over 20 hours per week in manual processes. Their team understood our needs from day one and delivered beyond our expectations.",
-      "authorName": "Marcus Johnson",
+      "authorName": "Shema AI Robayi",
+      "avatarInitials": "SR",
       "role": "CEO",
-      "company": "GrowthScale Labs",
-      "avatarInitials": "MJ"
+      "company": "PeptaNova.co",
+      "id": "seed-test-2"
     },
     {
-      "id": "seed-test-3",
       "quote": "Moving to Tinaht's managed hosting was the best decision we made. Zero downtime during migration, Docker deployments are seamless, and their support team is incredibly responsive.",
-      "authorName": "Emily Chen",
-      "role": "VP of Engineering",
-      "company": "DataFlow Systems",
-      "avatarInitials": "EC"
+      "authorName": "Medline",
+      "avatarInitials": "M",
+      "role": "CEO",
+      "company": "Multiples LLC",
+      "id": "seed-test-3"
     }
   ],
   "team": [
@@ -147,5 +147,5 @@
       "avatarInitials": "TH"
     }
   ],
-  "publishedAt": "2026-03-23T22:51:50.239Z"
+  "publishedAt": "2026-03-23T23:07:20.740Z"
 }
