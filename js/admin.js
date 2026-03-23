@@ -343,18 +343,28 @@
     adminBody.classList.add('is-visible');
     updatePublishStatus();
 
-    // If localStorage has no blogs yet, auto-load from published content.json
-    if (!TinahtData.getAll('blogs')) {
-      TinahtData.fetchPublished().then(function (data) {
-        if (data && data.blogs && data.blogs.length > 0) {
-          TinahtData.importAll(JSON.stringify(data));
-          showToast('Loaded published content into editor', 'success');
+    // Always merge from live on load — adds any published posts missing from localStorage
+    TinahtData.fetchPublished().then(function (data) {
+      if (data && data.blogs && data.blogs.length > 0) {
+        var existing = TinahtData.getAll('blogs') || [];
+        var existingIds = {};
+        existing.forEach(function (b) { existingIds[b.id] = true; });
+        var newPosts = data.blogs.filter(function (b) { return !existingIds[b.id]; });
+        if (newPosts.length > 0) {
+          newPosts.forEach(function (post) { existing.push(post); });
+          TinahtData.save('blogs', existing);
+          showToast(newPosts.length + ' new post(s) synced from live site', 'success');
         }
-        renderList();
-      });
-    } else {
+        // Also seed testimonials/team if empty
+        if (!(TinahtData.getAll('testimonials') || []).length && data.testimonials) {
+          TinahtData.save('testimonials', data.testimonials);
+        }
+        if (!(TinahtData.getAll('team') || []).length && data.team) {
+          TinahtData.save('team', data.team);
+        }
+      }
       renderList();
-    }
+    });
   }
 
   function logout() {
