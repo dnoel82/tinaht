@@ -10,6 +10,8 @@
       "author": "Djonny Noel",
       "date": "2026-03-05",
       "readTime": "8 min read",
+      "slug": "ai-workflow-automation-small-business",
+      "url": "/blog/ai-workflow-automation-small-business",
       "featured": true
     },
     {
@@ -22,6 +24,8 @@
       "author": "Djonny Noel",
       "date": "2026-02-28",
       "readTime": "6 min read",
+      "slug": "docker-vs-kubernetes",
+      "url": "/blog/docker-vs-kubernetes",
       "featured": false
     },
     {
@@ -34,6 +38,8 @@
       "author": "Djonny Noel",
       "date": "2026-02-20",
       "readTime": "10 min read",
+      "slug": "zero-trust-architecture",
+      "url": "/blog/zero-trust-architecture",
       "featured": false
     },
     {
@@ -46,6 +52,8 @@
       "author": "Djonny Noel",
       "date": "2026-02-14",
       "readTime": "7 min read",
+      "slug": "core-web-vitals-2026",
+      "url": "/blog/core-web-vitals-2026",
       "featured": false
     },
     {
@@ -70,6 +78,8 @@
       "author": "Djonny Noel",
       "date": "2026-01-30",
       "readTime": "5 min read",
+      "slug": "edge-computing-infrastructure",
+      "url": "/blog/edge-computing-infrastructure",
       "featured": false
     },
     {
@@ -82,6 +92,8 @@
       "author": "Djonny Noel",
       "date": "2026-01-22",
       "readTime": "9 min read",
+      "slug": "ssl-tls-best-practices-2026",
+      "url": "/blog/ssl-tls-best-practices-2026",
       "featured": false
     },
     {

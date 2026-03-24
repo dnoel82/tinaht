@@ -258,16 +258,32 @@
         return;
       }
       var existing = TinahtData.getAll('blogs') || [];
-      var existingIds = {};
-      existing.forEach(function (b) { existingIds[b.id] = true; });
-      var newPosts = data.blogs.filter(function (b) { return !existingIds[b.id]; });
-      if (newPosts.length === 0) {
+      var existingMap = {};
+      existing.forEach(function (b) { existingMap[b.id] = b; });
+      var newPosts = [];
+      var patched = 0;
+      data.blogs.forEach(function (livePost) {
+        if (!existingMap[livePost.id]) {
+          existing.push(livePost);
+          newPosts.push(livePost);
+        } else {
+          var local = existingMap[livePost.id];
+          var changed = false;
+          Object.keys(livePost).forEach(function (key) {
+            if (!(key in local)) { local[key] = livePost[key]; changed = true; }
+          });
+          if (changed) patched++;
+        }
+      });
+      if (newPosts.length === 0 && patched === 0) {
         showToast('Already up to date \u2014 no new posts on live site', 'success');
         return;
       }
-      newPosts.forEach(function (post) { existing.push(post); });
       TinahtData.save('blogs', existing);
-      showToast('Synced ' + newPosts.length + ' new post(s) from live site', 'success');
+      var msg = [];
+      if (newPosts.length > 0) msg.push(newPosts.length + ' new post(s)');
+      if (patched > 0) msg.push(patched + ' post(s) updated');
+      showToast('Synced: ' + msg.join(', '), 'success');
       renderList();
     });
   }
@@ -343,17 +359,31 @@
     adminBody.classList.add('is-visible');
     updatePublishStatus();
 
-    // Always merge from live on load — adds any published posts missing from localStorage
+    // Always merge from live on load — adds missing posts and patches new fields onto existing ones
     TinahtData.fetchPublished().then(function (data) {
       if (data && data.blogs && data.blogs.length > 0) {
         var existing = TinahtData.getAll('blogs') || [];
-        var existingIds = {};
-        existing.forEach(function (b) { existingIds[b.id] = true; });
-        var newPosts = data.blogs.filter(function (b) { return !existingIds[b.id]; });
-        if (newPosts.length > 0) {
-          newPosts.forEach(function (post) { existing.push(post); });
+        var existingMap = {};
+        existing.forEach(function (b) { existingMap[b.id] = b; });
+        var newPosts = [];
+        var patched = 0;
+        data.blogs.forEach(function (livePost) {
+          if (!existingMap[livePost.id]) {
+            existing.push(livePost);
+            newPosts.push(livePost);
+          } else {
+            // Copy any new fields from live (e.g. url, slug) without overwriting local edits
+            var local = existingMap[livePost.id];
+            var changed = false;
+            Object.keys(livePost).forEach(function (key) {
+              if (!(key in local)) { local[key] = livePost[key]; changed = true; }
+            });
+            if (changed) patched++;
+          }
+        });
+        if (newPosts.length > 0 || patched > 0) {
           TinahtData.save('blogs', existing);
-          showToast(newPosts.length + ' new post(s) synced from live site', 'success');
+          if (newPosts.length > 0) showToast(newPosts.length + ' new post(s) synced from live site', 'success');
         }
         if (!(TinahtData.getAll('testimonials') || []).length && data.testimonials) {
           TinahtData.save('testimonials', data.testimonials);
