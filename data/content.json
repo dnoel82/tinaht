@@ -1,104 +1,6 @@
 {
   "blogs": [
     {
-      "id": "seed-blog-1",
-      "title": "How AI Workflow Automation Is Transforming Small Business Operations",
-      "category": "ai-automation",
-      "categoryLabel": "AI & Automation",
-      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
-      "description": "Discover how small and mid-sized businesses are leveraging AI-driven workflows to reduce manual tasks, cut costs, and scale operations without adding headcount.",
-      "author": "Djonny Noel",
-      "date": "2026-03-05",
-      "readTime": "8 min read",
-      "slug": "ai-workflow-automation-small-business",
-      "url": "/blog/ai-workflow-automation-small-business",
-      "featured": true
-    },
-    {
-      "id": "seed-blog-2",
-      "title": "Docker vs. Kubernetes: Choosing the Right Container Strategy",
-      "category": "hosting-devops",
-      "categoryLabel": "Hosting & DevOps",
-      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
-      "description": "A practical comparison of container orchestration tools to help you pick the best fit for your infrastructure needs and team size.",
-      "author": "Djonny Noel",
-      "date": "2026-02-28",
-      "readTime": "6 min read",
-      "slug": "docker-vs-kubernetes",
-      "url": "/blog/docker-vs-kubernetes",
-      "featured": false
-    },
-    {
-      "id": "seed-blog-3",
-      "title": "Zero Trust Architecture: A Practical Implementation Guide",
-      "category": "cybersecurity",
-      "categoryLabel": "Cybersecurity",
-      "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
-      "description": "Move beyond perimeter security with a step-by-step guide to implementing zero trust principles in your organization.",
-      "author": "Djonny Noel",
-      "date": "2026-02-20",
-      "readTime": "10 min read",
-      "slug": "zero-trust-architecture",
-      "url": "/blog/zero-trust-architecture",
-      "featured": false
-    },
-    {
-      "id": "seed-blog-4",
-      "title": "Core Web Vitals in 2026: What Changed and How to Optimize",
-      "category": "web-performance",
-      "categoryLabel": "Web Performance",
-      "imageUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
-      "description": "Google's latest Core Web Vitals update brings new metrics. Here's what matters for your site speed and SEO rankings.",
-      "author": "Djonny Noel",
-      "date": "2026-02-14",
-      "readTime": "7 min read",
-      "slug": "core-web-vitals-2026",
-      "url": "/blog/core-web-vitals-2026",
-      "featured": false
-    },
-    {
-      "id": "seed-blog-5",
-      "title": "Building Custom AI Chatbots: From Concept to Deployment",
-      "category": "ai-automation",
-      "categoryLabel": "AI & Automation",
-      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80",
-      "description": "A technical walkthrough of designing, training, and deploying custom AI chatbots that actually solve customer problems.",
-      "author": "Djonny Noel",
-      "date": "2026-02-07",
-      "readTime": "12 min read",
-      "slug": "ai-chatbots-concept-to-deployment",
-      "url": "/blog/ai-chatbots-concept-to-deployment",
-      "featured": false
-    },
-    {
-      "id": "seed-blog-6",
-      "title": "The Rise of Edge Computing: What It Means for Your Infrastructure",
-      "category": "industry-news",
-      "categoryLabel": "Industry News",
-      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
-      "description": "Edge computing is reshaping how businesses think about latency, data processing, and distributed architecture.",
-      "author": "Djonny Noel",
-      "date": "2026-01-30",
-      "readTime": "5 min read",
-      "slug": "edge-computing-infrastructure",
-      "url": "/blog/edge-computing-infrastructure",
-      "featured": false
-    },
-    {
-      "id": "seed-blog-7",
-      "title": "SSL/TLS Best Practices: Securing Your Web Applications in 2026",
-      "category": "hosting-devops",
-      "categoryLabel": "Hosting & DevOps",
-      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=600&q=80",
-      "description": "From certificate management to cipher suites, everything you need to know about modern TLS configuration.",
-      "author": "Djonny Noel",
-      "date": "2026-01-22",
-      "readTime": "9 min read",
-      "slug": "ssl-tls-best-practices-2026",
-      "url": "/blog/ssl-tls-best-practices-2026",
-      "featured": false
-    },
-    {
       "id": "blog-n8n-slack-automation",
       "title": "How to Automate Slack Notifications with n8n",
       "category": "ai-automation",
@@ -110,32 +12,130 @@
       "readTime": "9 min read",
       "url": "/blog/n8n-slack-automation",
       "featured": false
+    },
+    {
+      "id": "seed-blog-1",
+      "title": "How AI Workflow Automation Is Transforming Small Business Operations",
+      "category": "ai-automation",
+      "categoryLabel": "AI & Automation",
+      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+      "description": "Discover how small and mid-sized businesses are leveraging AI-driven workflows to reduce manual tasks, cut costs, and scale operations without adding headcount.",
+      "author": "Djonny Noel",
+      "date": "2026-03-05",
+      "readTime": "8 min read",
+      "featured": true,
+      "slug": "ai-workflow-automation-small-business",
+      "url": "/blog/ai-workflow-automation-small-business"
+    },
+    {
+      "id": "seed-blog-2",
+      "title": "Docker vs. Kubernetes: Choosing the Right Container Strategy",
+      "category": "hosting-devops",
+      "categoryLabel": "Hosting & DevOps",
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+      "description": "A practical comparison of container orchestration tools to help you pick the best fit for your infrastructure needs and team size.",
+      "author": "Djonny Noel",
+      "date": "2026-02-28",
+      "readTime": "6 min read",
+      "featured": false,
+      "slug": "docker-vs-kubernetes",
+      "url": "/blog/docker-vs-kubernetes"
+    },
+    {
+      "id": "seed-blog-3",
+      "title": "Zero Trust Architecture: A Practical Implementation Guide",
+      "category": "cybersecurity",
+      "categoryLabel": "Cybersecurity",
+      "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
+      "description": "Move beyond perimeter security with a step-by-step guide to implementing zero trust principles in your organization.",
+      "author": "Djonny Noel",
+      "date": "2026-02-20",
+      "readTime": "10 min read",
+      "featured": false,
+      "slug": "zero-trust-architecture",
+      "url": "/blog/zero-trust-architecture"
+    },
+    {
+      "id": "seed-blog-4",
+      "title": "Core Web Vitals in 2026: What Changed and How to Optimize",
+      "category": "web-performance",
+      "categoryLabel": "Web Performance",
+      "imageUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+      "description": "Google's latest Core Web Vitals update brings new metrics. Here's what matters for your site speed and SEO rankings.",
+      "author": "Djonny Noel",
+      "date": "2026-02-14",
+      "readTime": "7 min read",
+      "featured": false,
+      "slug": "core-web-vitals-2026",
+      "url": "/blog/core-web-vitals-2026"
+    },
+    {
+      "id": "seed-blog-5",
+      "title": "Building Custom AI Chatbots: From Concept to Deployment",
+      "category": "ai-automation",
+      "categoryLabel": "AI & Automation",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80",
+      "description": "A technical walkthrough of designing, training, and deploying custom AI chatbots that actually solve customer problems.",
+      "author": "Djonny Noel",
+      "date": "2026-02-07",
+      "readTime": "12 min read",
+      "featured": false,
+      "slug": "ai-chatbots-concept-to-deployment",
+      "url": "/blog/ai-chatbots-concept-to-deployment"
+    },
+    {
+      "id": "seed-blog-6",
+      "title": "The Rise of Edge Computing: What It Means for Your Infrastructure",
+      "category": "industry-news",
+      "categoryLabel": "Industry News",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+      "description": "Edge computing is reshaping how businesses think about latency, data processing, and distributed architecture.",
+      "author": "Djonny Noel",
+      "date": "2026-01-30",
+      "readTime": "5 min read",
+      "featured": false,
+      "slug": "edge-computing-infrastructure",
+      "url": "/blog/edge-computing-infrastructure"
+    },
+    {
+      "id": "seed-blog-7",
+      "title": "SSL/TLS Best Practices: Securing Your Web Applications in 2026",
+      "category": "hosting-devops",
+      "categoryLabel": "Hosting & DevOps",
+      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=600&q=80",
+      "description": "From certificate management to cipher suites, everything you need to know about modern TLS configuration.",
+      "author": "Djonny Noel",
+      "date": "2026-01-22",
+      "readTime": "9 min read",
+      "featured": false,
+      "slug": "ssl-tls-best-practices-2026",
+      "url": "/blog/ssl-tls-best-practices-2026"
     }
   ],
   "testimonials": [
     {
-      "id": "seed-test-1",
       "quote": "Tinaht transformed our network infrastructure. Their team delivered a solution that exceeded our expectations and reduced our downtime significantly. Highly recommended for any business.",
-      "authorName": "Sarah Mitchell",
+      "authorName": "Josemine Barthelemy",
+      "avatarInitials": "SM",
       "role": "CTO",
-      "company": "TechVenture Inc.",
-      "avatarInitials": "SM"
+      "company": "Tech Inc.",
+      "id": "seed-test-1"
     },
     {
-      "id": "seed-test-2",
       "quote": "The AI automation solutions from Tinaht saved us over 20 hours per week in manual processes. Their team understood our needs from day one and delivered beyond our expectations.",
-      "authorName": "Marcus Johnson",
+      "authorName": "Shema AI Robayi",
+      "avatarInitials": "SR",
       "role": "CEO",
-      "company": "GrowthScale Labs",
-      "avatarInitials": "MJ"
+      "company": "PeptaNova.co",
+      "id": "seed-test-2"
     },
     {
-      "id": "seed-test-3",
       "quote": "Moving to Tinaht's managed hosting was the best decision we made. Zero downtime during migration, Docker deployments are seamless, and their support team is incredibly responsive.",
-      "authorName": "Emily Chen",
-      "role": "VP of Engineering",
-      "company": "DataFlow Systems",
-      "avatarInitials": "EC"
+      "authorName": "Medline Christalin",
+      "avatarInitials": "MC",
+      "role": "CEO",
+      "company": "Multiples LLC",
+      "id": "seed-test-3"
     }
   ],
   "team": [
@@ -161,5 +161,5 @@
       "avatarInitials": "TH"
     }
   ],
-  "publishedAt": "2026-03-23T23:45:21.287Z"
+  "publishedAt": "2026-03-24T00:39:17.004Z"
 }
