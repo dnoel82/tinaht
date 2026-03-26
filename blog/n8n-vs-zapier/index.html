@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>n8n vs Zapier: Which Automation Tool Is Right for Your Business in 2026? | Tinaht Blog</title>
+  <meta name="description" content="An honest comparison of n8n vs Zapier — pricing, data privacy, code support, and vendor lock-in. Written by practitioners who use both tools daily.">
+  <link rel="icon" type="image/png" href="../../assets/images/logos/favicon-source.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;700&family=Montserrat:wght@500;600;800&family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/portfolio.css">
+  <link rel="stylesheet" href="../../css/pages.css">
+
+  <meta property="og:title" content="n8n vs Zapier: Which Automation Tool Is Right for Your Business in 2026?">
+  <meta property="og:description" content="An honest comparison of n8n vs Zapier — pricing, data privacy, code support, and vendor lock-in. Written by practitioners who use both tools daily.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tinaht.com/blog/n8n-vs-zapier">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="n8n vs Zapier: Which Automation Tool Is Right for Your Business in 2026?">
+  <meta name="twitter:description" content="An honest comparison of n8n vs Zapier — pricing, data privacy, code support, and vendor lock-in.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "n8n vs Zapier: Which Automation Tool Is Right for Your Business in 2026?",
+    "description": "An honest comparison of n8n vs Zapier covering pricing, data privacy, code support, vendor lock-in, and ease of use — written by practitioners who use both tools daily.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    "author": {
+      "@type": "Person",
+      "name": "Djonny Noel",
+      "url": "https://tinaht.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Tinaht",
+      "logo": { "@type": "ImageObject", "url": "https://tinaht.com/assets/images/logos/logo-wordmark.png" }
+    },
+    "datePublished": "2026-03-26",
+    "dateModified": "2026-03-26",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://tinaht.com/blog/n8n-vs-zapier" },
+    "keywords": ["n8n vs zapier", "n8n self-hosted", "zapier alternative", "workflow automation tools", "n8n docker", "automation platform comparison"],
+    "articleSection": "AI & Automation"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tinaht.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tinaht.com/blog" },
+      { "@type": "ListItem", "position": 3, "name": "n8n vs Zapier", "item": "https://tinaht.com/blog/n8n-vs-zapier" }
+    ]
+  }
+  </script>
+
+  <style>
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
+    .comparison-table th { background: var(--color-gray-800); color: var(--color-gray-100); padding: 12px 16px; text-align: left; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .comparison-table td { padding: 14px 16px; border-bottom: 1px solid var(--color-gray-800); color: var(--color-gray-300); vertical-align: top; line-height: 1.6; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr:hover td { background: var(--color-gray-900); }
+    .comparison-table .winner { color: #4caf84; font-weight: 600; }
+    .comparison-table .category { color: var(--color-white); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../../" class="site-logo" aria-label="Tinaht home"><span class="site-logo__text">Tinaht</span></a>
+      <nav class="nav-list-desktop" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../portfolio">Portfolio</a></li>
+          <li><a href="../../services">Services</a></li>
+          <li><a href="../../about">About</a></li>
+          <li><a href="../../blog" class="active">Blog</a></li>
+          <li><a href="../../contact" class="btn btn-primary btn-sm">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="drawer-overlay" aria-hidden="true"></div>
+  <nav class="mobile-drawer" aria-label="Mobile navigation">
+    <ul class="nav-list">
+      <li><a href="../../">Home</a></li>
+      <li><a href="../../portfolio">Portfolio</a></li>
+      <li><a href="../../services">Services</a></li>
+      <li><a href="../../about">About</a></li>
+      <li><a href="../../blog">Blog</a></li>
+      <li><a href="../../contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ARTICLE HERO -->
+    <section class="page-hero page-hero--article">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="../../blog">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>n8n vs Zapier</span>
+        </nav>
+        <span class="card__tag" style="margin-bottom:16px;display:inline-block;">AI &amp; Automation</span>
+        <h1>n8n vs Zapier: Which Automation Tool Is Right for Your Business in 2026?</h1>
+        <div class="blog-featured__meta" style="margin-top:16px;">
+          <span>Djonny Noel</span>
+          <span>&bull;</span>
+          <span>March 26, 2026</span>
+          <span>&bull;</span>
+          <span>9 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE CONTENT -->
+    <section class="section">
+      <div class="container">
+        <div class="article-layout">
+
+          <article class="article-body">
+
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
+              alt="Workflow automation dashboard with connected nodes and data flows"
+              style="width:100%;border-radius:12px;margin-bottom:40px;"
+              loading="eager"
+            >
+
+            <p>Every ops team eventually hits the same moment: the Zapier bill arrives, and someone does the math. At 750 tasks per month on the free tier and $19.99/month for 750 more, automation looks affordable — until you actually automate something meaningful. A busy lead routing workflow, a Slack notification pipeline, and a CRM sync can burn through 20,000 tasks a month without trying. At that volume, Zapier's Professional plan runs $49/month. At 50,000 tasks, you're at $69–$99/month. At 100,000+, you're in the Team tier at $103.50/month or higher — before advanced features like branching logic or multi-step automations.</p>
+
+            <p><strong>n8n vs Zapier</strong> is a real business decision, not just a technical preference. This post breaks down both tools honestly — based on what we use day-to-day at Tinaht, not vendor marketing.</p>
+
+            <hr style="border:none;border-top:1px solid var(--color-gray-800);margin:40px 0;">
+
+            <h2 id="what-is-n8n">What Is n8n?</h2>
+
+            <p>n8n (pronounced "n-eight-n") is an open-source workflow automation platform. You can run it yourself on a $6/month VPS, host it via Docker Compose in your existing infrastructure, or pay for n8n Cloud starting at $20/month. Either way, the core engine is the same: a visual node-based editor where you wire together triggers, logic steps, and actions.</p>
+
+            <p>What separates n8n from most automation tools is that it treats code as a first-class citizen. Every workflow can include a JavaScript or Python execution node — no workarounds, no hacks. You can call APIs directly, transform data with custom logic, and build conditional branches that would require 10 separate Zaps in Zapier. The node library covers 400+ integrations including all the standard SaaS tools (Slack, HubSpot, Airtable, Google Sheets, Postgres, MySQL), plus an AI Agent node that connects to OpenAI, Anthropic, or local models.</p>
+
+            <p>The tradeoff: n8n has a steeper learning curve than Zapier. The interface is powerful but dense. If you've never worked with API concepts like payloads, headers, or HTTP methods, the first hour will be frustrating.</p>
+
+            <h2 id="what-is-zapier">What Is Zapier?</h2>
+
+            <p>Zapier is the tool that taught most non-technical teams what automation could look like. Founded in 2011, it's been the default answer to "how do I connect these two apps?" for over a decade. The interface is genuinely beginner-friendly — you pick a trigger, pick an action, map your fields, and you're done. No servers, no code, no configuration files.</p>
+
+            <p>Zapier's strength is breadth: 7,000+ integrations, pre-built templates for almost every common workflow, and a UI that someone with no technical background can figure out in 20 minutes. For a sales team automating lead handoffs, or an operations manager syncing form submissions to a spreadsheet, it works well and requires no engineering time to maintain.</p>
+
+            <p>The constraint is the task-based pricing model. Every action that runs counts as a task. A five-step Zap that fires 500 times per day burns 2,500 tasks — and that's one workflow. The more you automate, the faster you hit the ceiling.</p>
+
+            <h2 id="head-to-head">Head-to-Head: n8n vs Zapier</h2>
+
+            <div style="overflow-x:auto;margin:32px 0;">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>n8n</th>
+                    <th>Zapier</th>
+                    <th>Edge</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="category">Pricing</td>
+                    <td>$6–$12/mo VPS (unlimited executions) or $20/mo Cloud</td>
+                    <td>$49/mo for 2,000 tasks; $103.50/mo for 50,000</td>
+                    <td class="winner">n8n</td>
+                  </tr>
+                  <tr>
+                    <td class="category">Data Privacy</td>
+                    <td>Self-hosted = data stays on your server</td>
+                    <td>All data flows through Zapier's infrastructure</td>
+                    <td class="winner">n8n</td>
+                  </tr>
+                  <tr>
+                    <td class="category">Code Support</td>
+                    <td>Full Node.js with npm packages</td>
+                    <td>Limited sandbox (no npm, restricted execution)</td>
+                    <td class="winner">n8n</td>
+                  </tr>
+                  <tr>
+                    <td class="category">Integrations</td>
+                    <td>400+ native nodes</td>
+                    <td>7,000+ apps</td>
+                    <td class="winner">Zapier</td>
+                  </tr>
+                  <tr>
+                    <td class="category">Ease of Use</td>
+                    <td>Moderate — requires technical familiarity</td>
+                    <td>Very easy — non-technical friendly</td>
+                    <td class="winner">Zapier</td>
+                  </tr>
+                  <tr>
+                    <td class="category">Vendor Lock-In</td>
+                    <td>Workflows export as JSON — fully portable</td>
+                    <td>Proprietary format — migration requires rebuild</td>
+                    <td class="winner">n8n</td>
+                  </tr>
+                  <tr>
+                    <td class="category">AI / Agents</td>
+                    <td>Native AI Agent node with LLM integration</td>
+                    <td>AI features available but add-on pricing</td>
+                    <td class="winner">n8n</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Pricing</h3>
+
+            <p>This is where <strong>n8n vs Zapier</strong> diverges most sharply. Zapier charges per task — every action that executes counts against your monthly limit. The Professional plan at $49/month buys you 2,000 tasks. The Team plan at $103.50/month covers 50,000. If you exceed your limit, Zapier pauses your automations until the next billing cycle.</p>
+
+            <p><strong>n8n self-hosted</strong> has no per-execution fee. A $6–$12/month VPS running Docker is enough for most small and mid-size automation workloads. You can run 500,000 workflow executions per month for the same fixed cost as 2,000 Zapier tasks. n8n Cloud starts at $20/month for unlimited executions on up to 5 active workflows — still competitive for teams that don't want to manage infrastructure.</p>
+
+            <h3>Data Privacy</h3>
+
+            <p>With Zapier, every piece of data flowing through a Zap — customer records, payment data, internal messages — touches Zapier's infrastructure. For most businesses this is acceptable. For healthcare, fintech, or any organization with strict data residency requirements, it's a compliance question worth asking your legal team.</p>
+
+            <p>n8n self-hosted keeps data entirely within your own infrastructure. Nothing leaves your server unless you explicitly send it somewhere. At Tinaht, this is the deciding factor for clients handling sensitive data — not because Zapier is insecure, but because <strong>n8n self-hosted</strong> removes a third-party data processor from the equation entirely.</p>
+
+            <h3>Code Support</h3>
+
+            <p>Zapier has a "Code" step that allows JavaScript or Python — but it's sandboxed: no external npm packages, restricted execution time, and limited enough that complex logic is painful. It works for simple string transforms or basic conditionals, not for anything requiring a library.</p>
+
+            <p>n8n's Code node runs full Node.js with npm access. You can <code>require('lodash')</code>, call a database, parse a complex payload, or apply a regex across thousands of records. For technical teams, this eliminates the entire category of "I can't do that in the automation tool" workarounds.</p>
+
+            <h3>Vendor Lock-In</h3>
+
+            <p>Every workflow built in Zapier is stored in Zapier's proprietary format. Migration means rebuilding from scratch. At Tinaht, we export and version-control all client n8n workflows in Git — something structurally impossible with Zapier. When a client's infrastructure changes or they switch hosting providers, the workflows move with them as JSON files.</p>
+
+            <h3>Ease of Use</h3>
+
+            <p>Zapier wins here clearly. The onboarding is faster, the UI is less intimidating, and the templates genuinely help non-technical users get started. If your team doesn't include someone comfortable with JSON or REST APIs, Zapier's abstractions do significant heavy lifting.</p>
+
+            <p>n8n is approachable for anyone with a technical background but expects more from the user. Field mapping is more manual, error messages require interpretation, and some integrations need API documentation before they connect. Plan for a learning curve of a few hours to a few days depending on the complexity of your workflows.</p>
+
+            <h2 id="when-to-choose-zapier">When to Choose Zapier</h2>
+
+            <p>Zapier is the right call when:</p>
+
+            <ul>
+              <li>Your team is non-technical and needs to build and maintain workflows without engineering support</li>
+              <li>You're running simple, low-volume automations — under 10,000 tasks per month</li>
+              <li>You need a specific niche integration that Zapier has and n8n doesn't (7,000 vs 400+ is a real gap for edge cases)</li>
+              <li>Speed of setup matters more than long-term cost — you need something working today, not this week</li>
+            </ul>
+
+            <p>If you're a five-person startup connecting your CRM to your email tool and Slack, Zapier will serve you well and won't require a dedicated setup effort. At that scale, the pricing is reasonable and the simplicity has real value.</p>
+
+            <h2 id="when-to-choose-n8n">When to Choose n8n</h2>
+
+            <p>Choose n8n — specifically as a <strong>Zapier alternative</strong> — when:</p>
+
+            <ul>
+              <li>Your automation volume is high enough that per-task pricing is a meaningful line item ($50–$100+/mo and climbing)</li>
+              <li>You need custom logic — API calls, data transformations, conditional branching — that Zapier's Code step can't handle cleanly</li>
+              <li>You're handling sensitive data and need it to stay inside your own infrastructure</li>
+              <li>You want workflows that are versionable, exportable, and not tied to a vendor's pricing decisions</li>
+              <li>You have a technical team member, or a partner like Tinaht, who can handle initial setup and ongoing maintenance</li>
+            </ul>
+
+            <p>The self-hosted <strong>n8n vs Zapier</strong> comparison becomes especially clear at scale. A company running 100,000 automation executions per month pays $103.50/month with Zapier — or about $12/month for a Hetzner server running n8n. That's not a rounding error; it's a budget line that funds other work.</p>
+
+            <h2 id="the-verdict">The Verdict</h2>
+
+            <p><strong>n8n vs Zapier</strong> isn't a question of which tool is better — it's a question of what your team needs and what you're prepared to manage.</p>
+
+            <p>Zapier is a polished, accessible product that solves the "how do I connect these two things" problem faster than anything else on the market. For non-technical teams running moderate volumes, it earns its cost without argument.</p>
+
+            <p>n8n requires more setup in exchange for lower cost, full data ownership, and code-level flexibility that Zapier can't match. As a <strong>workflow automation tool</strong>, it isn't a downgrade from Zapier — it's a different category that happens to overlap with Zapier's use cases at the simple end.</p>
+
+            <p>At Tinaht, we build and manage n8n workflows for most of our automation clients. We run it internally for our own pipelines. The self-hosted model on a $10/month VPS consistently outperforms Zapier on cost for anything running at volume, and the code execution capability solves problems that would otherwise require custom development.</p>
+
+            <p>If you're on Zapier today and the bill keeps growing, it probably won't stop. The question is whether the migration is worth the effort — and that depends entirely on what you're automating and who's maintaining it.</p>
+
+            <!-- CTA BLOCK -->
+            <div style="margin-top:40px;padding:32px;background:linear-gradient(135deg,var(--color-gray-900) 0%,#0f1a2e 100%);border:1px solid var(--color-primary);border-radius:12px;">
+              <h3 style="margin-bottom:12px;">Not sure which tool fits your stack?</h3>
+              <p style="color:var(--color-gray-400);margin-bottom:24px;">At Tinaht, we offer a free automation discovery call where we look at your current workflows, your execution volume, and your team's technical capacity — and give you an honest recommendation. No pitch, no commitment.</p>
+              <a href="../../services/ai-automation" class="btn btn-primary">Book a Free Automation Discovery Call &rarr;</a>
+            </div>
+
+            <!-- AUTHOR BIO -->
+            <div class="author-bio" style="margin-top:48px;padding:32px;background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;">
+              <strong style="display:block;margin-bottom:8px;font-family:var(--font-heading);">Djonny Noel</strong>
+              <p style="margin:0;color:var(--color-gray-500);font-size:15px;">Founder of Tinaht. We build and manage n8n automation infrastructure for startups and mid-size businesses. Based in Littleton, MA.</p>
+            </div>
+
+            <!-- NAV -->
+            <nav class="article-nav" style="margin-top:48px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+              <a href="../../blog" class="btn btn-secondary">&larr; Back to Blog</a>
+              <a href="../../services/ai-automation" class="btn btn-primary">See Our Automation Service &rarr;</a>
+            </nav>
+
+          </article>
+
+          <!-- SIDEBAR -->
+          <aside class="article-sidebar">
+
+            <div class="sidebar-widget" style="background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;padding:24px;margin-bottom:24px;">
+              <h4 style="margin-bottom:16px;">Table of Contents</h4>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+                <li><a href="#what-is-n8n" style="color:var(--color-gray-400);font-size:14px;">What Is n8n?</a></li>
+                <li><a href="#what-is-zapier" style="color:var(--color-gray-400);font-size:14px;">What Is Zapier?</a></li>
+                <li><a href="#head-to-head" style="color:var(--color-gray-400);font-size:14px;">Head-to-Head Comparison</a></li>
+                <li><a href="#when-to-choose-zapier" style="color:var(--color-gray-400);font-size:14px;">When to Choose Zapier</a></li>
+                <li><a href="#when-to-choose-n8n" style="color:var(--color-gray-400);font-size:14px;">When to Choose n8n</a></li>
+                <li><a href="#the-verdict" style="color:var(--color-gray-400);font-size:14px;">The Verdict</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-widget" style="background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;padding:24px;margin-bottom:24px;">
+              <h4 style="margin-bottom:12px;">Related Service</h4>
+              <p style="color:var(--color-gray-500);font-size:14px;margin-bottom:16px;">We build and manage n8n workflows for businesses running at scale — no per-task fees, full documentation.</p>
+              <a href="../../services/ai-automation" class="btn btn-primary" style="width:100%;text-align:center;display:block;">AI Automation Service</a>
+            </div>
+
+            <div class="sidebar-widget" style="background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;padding:24px;">
+              <h4 style="margin-bottom:12px;">Related Articles</h4>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+                <li><a href="../n8n-slack-automation" style="color:var(--color-gray-400);font-size:14px;">How to Automate Slack Notifications with n8n</a></li>
+                <li><a href="../ai-workflow-automation-small-business" style="color:var(--color-gray-400);font-size:14px;">How AI Workflow Automation Is Transforming Small Business Operations</a></li>
+                <li><a href="../ai-chatbots-concept-to-deployment" style="color:var(--color-gray-400);font-size:14px;">Building Custom AI Chatbots: From Concept to Deployment</a></li>
+              </ul>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../../" class="site-logo"><span class="site-logo__text">Tinaht</span></a>
+          <p>Scalable, secure technology solutions for startups and businesses that demand more.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          </div>
+        </div>
+        <div><h4 class="footer-heading">Services</h4><ul class="footer-links"><li><a href="../../services/ai-automation">AI Automation</a></li><li><a href="../../services/managed-hosting">Managed Hosting</a></li><li><a href="../../services/network-consulting">Network Consulting</a></li><li><a href="../../services/speed-optimization">Speed Optimization</a></li></ul></div>
+        <div><h4 class="footer-heading">Company</h4><ul class="footer-links"><li><a href="../../about">About</a></li><li><a href="../../portfolio">Portfolio</a></li><li><a href="../../blog">Blog</a></li><li><a href="../../contact">Contact</a></li></ul></div>
+        <div><h4 class="footer-heading">Legal</h4><ul class="footer-links"><li><a href="../../privacy">Privacy Policy</a></li><li><a href="../../terms">Terms of Service</a></li><li><a href="../../refund-policy">Refund Policy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Tinaht. All rights reserved.</p><ul class="footer-bottom-links"><li><a href="../../privacy">Privacy</a></li><li><a href="../../terms">Terms</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

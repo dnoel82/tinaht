@@ -1,6 +1,20 @@
 {
   "blogs": [
     {
+      "id": "blog-n8n-vs-zapier",
+      "title": "n8n vs Zapier: Which Automation Tool Is Right for Your Business in 2026?",
+      "category": "ai-automation",
+      "categoryLabel": "AI & Automation",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+      "description": "An honest comparison of n8n vs Zapier — pricing, data privacy, code support, and vendor lock-in. Written by practitioners who use both tools daily.",
+      "author": "Djonny Noel",
+      "date": "2026-03-26",
+      "readTime": "9 min read",
+      "url": "/blog/n8n-vs-zapier",
+      "slug": "n8n-vs-zapier",
+      "featured": false
+    },
+    {
       "id": "blog-vlan-setup-small-office",
       "title": "VLAN Setup for Small Offices: A Practical Step-by-Step Guide",
       "category": "network-infrastructure",
