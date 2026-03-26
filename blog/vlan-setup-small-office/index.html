@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLAN Setup for Small Offices: A Practical Step-by-Step Guide | Tinaht Blog</title>
+  <meta name="description" content="A practical guide to VLAN setup for small offices — covering VLAN structure, managed switch configuration on Aruba and UniFi, SSID mapping, and common mistakes to avoid.">
+  <link rel="icon" type="image/png" href="../../assets/images/logos/favicon-source.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;700&family=Montserrat:wght@500;600;800&family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/portfolio.css">
+  <link rel="stylesheet" href="../../css/pages.css">
+
+  <meta property="og:title" content="VLAN Setup for Small Offices: A Practical Step-by-Step Guide">
+  <meta property="og:description" content="A practical guide to VLAN setup for small offices — VLAN structure, managed switch config on Aruba and UniFi, SSID mapping, and common mistakes to avoid.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://tinaht.com/blog/vlan-setup-small-office">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VLAN Setup for Small Offices: A Practical Step-by-Step Guide">
+  <meta name="twitter:description" content="A practical guide to VLAN setup for small offices — VLAN structure, managed switch config on Aruba and UniFi, SSID mapping, and common mistakes to avoid.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "VLAN Setup for Small Offices: A Practical Step-by-Step Guide",
+    "description": "A practical guide to VLAN setup for small offices — covering VLAN structure, managed switch configuration on Aruba and UniFi, SSID mapping, and common mistakes to avoid.",
+    "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    "author": {
+      "@type": "Person",
+      "name": "Djonny Noel",
+      "url": "https://tinaht.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Tinaht",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://tinaht.com/assets/images/logos/logo-wordmark.png"
+      }
+    },
+    "datePublished": "2026-03-26",
+    "dateModified": "2026-03-26",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://tinaht.com/blog/vlan-setup-small-office" },
+    "keywords": ["vlan setup small office", "vlan segmentation small business", "office network segmentation", "vlan configuration guide", "ubiquiti unifi vlan", "aruba vlan setup"],
+    "articleSection": "Network Infrastructure"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tinaht.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://tinaht.com/blog" },
+      { "@type": "ListItem", "position": 3, "name": "VLAN Setup for Small Offices", "item": "https://tinaht.com/blog/vlan-setup-small-office" }
+    ]
+  }
+  </script>
+
+  <style>
+    .vlan-table-wrap { overflow-x: auto; margin: 32px 0; }
+    .vlan-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .vlan-table th { background: var(--color-gray-800); color: var(--color-gray-100); padding: 12px 16px; text-align: left; font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .vlan-table td { padding: 12px 16px; border-bottom: 1px solid var(--color-gray-800); color: var(--color-gray-300); vertical-align: top; }
+    .vlan-table tr:last-child td { border-bottom: none; }
+    .vlan-table tr:hover td { background: var(--color-gray-900); }
+    .vlan-table code { background: var(--color-gray-800); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../../" class="site-logo" aria-label="Tinaht home"><span class="site-logo__text">Tinaht</span></a>
+      <nav class="nav-list-desktop" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../portfolio">Portfolio</a></li>
+          <li><a href="../../services">Services</a></li>
+          <li><a href="../../about">About</a></li>
+          <li><a href="../../blog" class="active">Blog</a></li>
+          <li><a href="../../contact" class="btn btn-primary btn-sm">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="drawer-overlay" aria-hidden="true"></div>
+  <nav class="mobile-drawer" aria-label="Mobile navigation">
+    <ul class="nav-list">
+      <li><a href="../../">Home</a></li>
+      <li><a href="../../portfolio">Portfolio</a></li>
+      <li><a href="../../services">Services</a></li>
+      <li><a href="../../about">About</a></li>
+      <li><a href="../../blog">Blog</a></li>
+      <li><a href="../../contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ARTICLE HERO -->
+    <section class="page-hero page-hero--article">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="../../blog">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>VLAN Setup for Small Offices</span>
+        </nav>
+        <span class="card__tag" style="margin-bottom:16px;display:inline-block;">Network Infrastructure</span>
+        <h1>VLAN Setup for Small Offices: A Practical Step-by-Step Guide</h1>
+        <div class="blog-featured__meta" style="margin-top:16px;">
+          <span>Djonny Noel</span>
+          <span>&bull;</span>
+          <span>March 26, 2026</span>
+          <span>&bull;</span>
+          <span>10 min read</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE CONTENT -->
+    <section class="section">
+      <div class="container">
+        <div class="article-layout">
+
+          <!-- MAIN CONTENT -->
+          <article class="article-body">
+
+            <img
+              src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80"
+              alt="Network switches and patch cables in a server rack"
+              style="width:100%;border-radius:12px;margin-bottom:40px;"
+              loading="eager"
+            >
+
+            <p>Most small offices start with a single flat network — one router, one switch, everything on the same subnet. It works until it doesn't. A guest laptop shares bandwidth with your VoIP phones. An IoT thermostat sits on the same network segment as your file server. One compromised device can reach everything else.</p>
+
+            <p>If you're managing a network for a 20–150 person office and you've never set up network segmentation, this guide is for you. We'll walk through exactly how to approach <strong>vlan setup for a small office</strong>: which VLANs to create, how to configure them on real hardware, and where people go wrong.</p>
+
+            <p>No fluff — just the configuration decisions that matter.</p>
+
+            <hr style="border:none;border-top:1px solid var(--color-gray-800);margin:40px 0;">
+
+            <h2 id="what-is-a-vlan">What Is a VLAN?</h2>
+
+            <p>A VLAN (Virtual Local Area Network) is a way to logically divide a single physical switch into multiple isolated network segments. Think of it like this: your office building has one set of hallways, but you put up walls and locked doors between departments. People in accounting can't wander into the server room, even though they're all in the same building.</p>
+
+            <p>Without VLANs, all your network traffic rides the same hallway. With VLANs, each segment gets its own walled-off space — with a firewall (or router with ACLs) controlling what can talk to what.</p>
+
+            <p>Switches carry VLAN traffic in two ways:</p>
+
+            <ul>
+              <li><strong>Access ports</strong> — assigned to a single VLAN, typically where end devices plug in</li>
+              <li><strong>Trunk ports</strong> — carry traffic from multiple VLANs between switches, routers, and access points (tagged with 802.1Q headers)</li>
+            </ul>
+
+            <p>You don't need to memorize the spec. You just need to know which ports are access and which are trunk — and we'll cover that in the configuration steps.</p>
+
+            <h2 id="why-small-offices-need-vlans">Why Small Offices Need VLAN Segmentation</h2>
+
+            <p>The argument for <strong>vlan segmentation in a small business</strong> isn't just theoretical. Here's what we see in real environments:</p>
+
+            <p><strong>Security exposure.</strong> A flat network means any device can initiate traffic to any other device. If a laptop gets infected with ransomware, it can scan and attempt to reach your NAS, your backup server, your printer admin interface — everything. VLANs don't stop all lateral movement, but they force it through your firewall where you can log and block it.</p>
+
+            <p><strong>Compliance and liability.</strong> If you process payment cards, handle healthcare data, or operate under any regulated framework, auditors will ask about network segmentation. A flat network is a finding.</p>
+
+            <p><strong>Performance and QoS.</strong> VoIP traffic is time-sensitive. If it competes with a large file transfer or a video conference on the same broadcast domain, call quality degrades. Putting VoIP on its own VLAN lets you prioritize that traffic at the switch level.</p>
+
+            <p><strong>Guest access.</strong> Giving a visitor your main Wi-Fi password is a security problem. A guest VLAN with internet-only access solves this cleanly.</p>
+
+            <h2 id="recommended-vlan-structure">Recommended VLAN Structure for a Small Office</h2>
+
+            <p>Here's the VLAN structure we typically deploy at Tinaht for small office environments. Adjust subnet sizes based on your headcount.</p>
+
+            <div class="vlan-table-wrap">
+              <table class="vlan-table">
+                <thead>
+                  <tr>
+                    <th>VLAN ID</th>
+                    <th>Name</th>
+                    <th>Subnet</th>
+                    <th>Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>10</code></td>
+                    <td>Staff</td>
+                    <td><code>192.168.10.0/24</code></td>
+                    <td>Employee workstations, laptops, corporate devices</td>
+                  </tr>
+                  <tr>
+                    <td><code>20</code></td>
+                    <td>Servers</td>
+                    <td><code>192.168.20.0/24</code></td>
+                    <td>File servers, NAS, internal apps, printers</td>
+                  </tr>
+                  <tr>
+                    <td><code>30</code></td>
+                    <td>VoIP</td>
+                    <td><code>192.168.30.0/24</code></td>
+                    <td>IP phones, SIP infrastructure</td>
+                  </tr>
+                  <tr>
+                    <td><code>40</code></td>
+                    <td>IoT</td>
+                    <td><code>192.168.40.0/24</code></td>
+                    <td>Thermostats, cameras, building automation</td>
+                  </tr>
+                  <tr>
+                    <td><code>50</code></td>
+                    <td>Guest</td>
+                    <td><code>192.168.50.0/24</code></td>
+                    <td>Visitor Wi-Fi — internet only, no LAN access</td>
+                  </tr>
+                  <tr>
+                    <td><code>99</code></td>
+                    <td>Management</td>
+                    <td><code>192.168.99.0/24</code></td>
+                    <td>Switch management IPs, AP management, router access</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>A few design decisions baked into this:</p>
+
+            <ul>
+              <li><strong>Servers get their own VLAN.</strong> Staff can reach servers (via firewall rules), but IoT devices cannot. This is the most impactful single change in most flat-network environments.</li>
+              <li><strong>Management VLAN is isolated.</strong> Your switch admin interfaces and AP management should never be reachable from the Guest or IoT VLANs.</li>
+              <li><strong>IoT is quarantined.</strong> These devices often have poor security and no update cadence. Keep them isolated — they should reach the internet and nothing else.</li>
+            </ul>
+
+            <p>Your router or firewall handles inter-VLAN routing. pfSense, OPNsense, Cisco ASA, and Fortinet all support this natively. The firewall ruleset determines what can talk across VLANs.</p>
+
+            <h2 id="configuring-vlans-switches">Step-by-Step: Configuring VLANs on Managed Switches</h2>
+
+            <p>You need a <strong>managed switch</strong> to implement VLANs. Unmanaged switches cannot do this. Common choices we work with: <strong>Aruba Instant On</strong>, <strong>Ubiquiti UniFi</strong>, and <strong>Cisco Business series</strong>.</p>
+
+            <h3>Ubiquiti UniFi Example</h3>
+
+            <p>UniFi handles much of this through its controller UI.</p>
+
+            <ol>
+              <li><strong>Log into the UniFi Network controller</strong> (cloud or local)</li>
+              <li>Navigate to <strong>Settings &rarr; Networks &rarr; Create New Network</strong></li>
+              <li>For each VLAN, create a network:
+                <ul>
+                  <li>Name: <code>Staff</code></li>
+                  <li>VLAN ID: <code>10</code></li>
+                  <li>Gateway/Subnet: <code>192.168.10.1/24</code></li>
+                  <li>DHCP: Enabled (or point to your external DHCP server)</li>
+                </ul>
+              </li>
+              <li>Repeat for each VLAN in the table above</li>
+              <li>Navigate to <strong>UniFi Devices &rarr; [your switch] &rarr; Ports</strong></li>
+              <li>For uplink/trunk ports (to router, other switches, APs): set port profile to <strong>All</strong> (carries all VLANs tagged)</li>
+              <li>For endpoint ports (workstations, phones): assign the appropriate port profile matching that VLAN</li>
+            </ol>
+
+            <h3>Aruba Instant On Example</h3>
+
+            <ol>
+              <li>Log into the <strong>Aruba Instant On</strong> portal or local app</li>
+              <li>Go to <strong>Networks &rarr; Wired Networks &rarr; Add Network</strong></li>
+              <li>Create each VLAN with its ID and name</li>
+              <li>Under <strong>Switch Configuration</strong>, assign VLANs to ports:
+                <ul>
+                  <li>Set trunk ports (to router/APs) as <strong>Tagged</strong> for all VLANs</li>
+                  <li>Set access ports as <strong>Untagged</strong> for the appropriate VLAN</li>
+                </ul>
+              </li>
+              <li>Your default/native VLAN should be the Management VLAN (99), not VLAN 1</li>
+            </ol>
+
+            <p><strong>Important:</strong> Change the management VLAN from the default VLAN 1 on every switch you deploy. VLAN 1 is a known attack target and leaving management on it is a documented misconfiguration.</p>
+
+            <h2 id="ssid-vlan-mapping">Step-by-Step: SSID-to-VLAN Mapping for Wi-Fi</h2>
+
+            <p>For the <strong>office network segmentation</strong> to extend to Wi-Fi, each SSID needs to be mapped to a VLAN. This means your APs must be on a trunk port (carrying all VLANs), and your controller or AP must support SSID-to-VLAN assignment.</p>
+
+            <h3>In Ubiquiti UniFi</h3>
+
+            <ol>
+              <li>Go to <strong>Settings &rarr; WiFi &rarr; Create New WiFi Network</strong></li>
+              <li>Create separate SSIDs:
+                <ul>
+                  <li><code>Tinaht-Staff</code> &rarr; Network: Staff (VLAN 10)</li>
+                  <li><code>Tinaht-VoIP</code> &rarr; Network: VoIP (VLAN 30)</li>
+                  <li><code>Tinaht-Guest</code> &rarr; Network: Guest (VLAN 50)</li>
+                </ul>
+              </li>
+              <li>For Guest, enable <strong>Client Device Isolation</strong> and disable <strong>LAN access</strong></li>
+              <li>Ensure your AP uplink port is configured as a trunk carrying all relevant VLANs</li>
+            </ol>
+
+            <h3>In Aruba Instant On</h3>
+
+            <ol>
+              <li>Go to <strong>Networks &rarr; Wireless Networks &rarr; Add</strong></li>
+              <li>Assign each SSID a VLAN ID matching your table</li>
+              <li>For the Guest network, enable the <strong>Guest</strong> toggle — this automatically restricts it to internet-only with client isolation</li>
+              <li>Apply the network to your access points</li>
+            </ol>
+
+            <p>After mapping, confirm with a device connected to each SSID that it receives an IP in the correct subnet and that cross-VLAN traffic is blocked where intended.</p>
+
+            <h2 id="common-mistakes">Common Mistakes to Avoid</h2>
+
+            <p>We've cleaned up a lot of small office networks. Here are the errors we see most often:</p>
+
+            <p><strong>Leaving everything on VLAN 1.</strong> VLAN 1 is the default on every switch and should carry no production traffic. Create a dedicated management VLAN and move switch IPs there.</p>
+
+            <p><strong>Forgetting to trunk APs.</strong> If your AP uplink port is configured as an access port on only one VLAN, all your SSIDs end up on that VLAN regardless of how you configure them in the controller. Always verify the physical port config.</p>
+
+            <p><strong>No inter-VLAN firewall rules.</strong> Creating VLANs without writing firewall rules between them gives you the appearance of segmentation without the protection. Staff VLAN reaching the IoT VLAN via the router is still a problem — you need explicit deny rules.</p>
+
+            <p><strong>Using /24 everywhere without thinking.</strong> A /24 gives you 254 hosts. For an IoT VLAN with 12 devices or a Management VLAN with 5 switches, a /28 or /27 is more appropriate and reduces broadcast traffic.</p>
+
+            <p><strong>Testing from the same VLAN you configured.</strong> Always test cross-VLAN connectivity from a device on the source VLAN, not from the router itself. The router can usually reach everything — that doesn't mean your firewall rules are working.</p>
+
+            <h2 id="diy-vs-professional">When to Hire a Professional vs. DIY</h2>
+
+            <p>A <strong>vlan configuration guide</strong> can get you to a working setup, but there are situations where it's worth bringing in a network engineer.</p>
+
+            <p><strong>DIY is reasonable if:</strong></p>
+            <ul>
+              <li>You're using a unified platform (UniFi or Aruba Instant On) with a GUI controller</li>
+              <li>You have fewer than 5 switches and 3 SSIDs</li>
+              <li>You don't have compliance requirements (PCI, HIPAA)</li>
+              <li>You're comfortable reading switch logs when something breaks</li>
+            </ul>
+
+            <p><strong>Hire a professional if:</strong></p>
+            <ul>
+              <li>You're mixing hardware from multiple vendors (Cisco + Ubiquiti + pfSense)</li>
+              <li>You have existing infrastructure that can't go offline during changes</li>
+              <li>You need documented network diagrams for compliance or insurance</li>
+              <li>Your VoIP or security cameras are on the same network as production systems and you can't afford downtime during troubleshooting</li>
+            </ul>
+
+            <p>At Tinaht, we handle <strong>vlan setup for small office</strong> environments regularly — from a 25-person professional services firm to a 120-person manufacturing office with OT equipment. We design the VLAN structure, configure the hardware, write the firewall rules, and hand you documentation you can actually use.</p>
+
+            <p>We also do post-implementation testing: confirming that Guest devices can't reach Staff, that IoT can't reach Servers, and that management interfaces are locked down.</p>
+
+            <hr style="border:none;border-top:1px solid var(--color-gray-800);margin:40px 0;">
+
+            <h2 id="conclusion">Your Network Should Work For You, Not Against You</h2>
+
+            <p>A properly segmented network isn't a luxury — it's the baseline for a secure, manageable small office environment. The <strong>vlan setup for your small office</strong> doesn't need to be complicated, but it does need to be intentional. Random subnets, VLAN 1 everywhere, and undocumented port configs create problems that compound over time.</p>
+
+            <p>If you're ready to do this right — or you've inherited a network that was never set up properly — we can help.</p>
+
+            <!-- CTA BLOCK -->
+            <div style="margin-top:40px;padding:32px;background:linear-gradient(135deg,var(--color-gray-900) 0%,#0f1a2e 100%);border:1px solid var(--color-primary);border-radius:12px;text-align:center;">
+              <h3 style="margin-bottom:12px;">Ready to segment your office network?</h3>
+              <p style="color:var(--color-gray-400);margin-bottom:24px;">We assess your current setup, design the right VLAN structure, and configure everything — switches, APs, and firewall rules — with full documentation.</p>
+              <a href="../../services/network-consulting" class="btn btn-primary">Talk to Our Network Team &rarr;</a>
+            </div>
+
+            <!-- AUTHOR BIO -->
+            <div class="author-bio" style="margin-top:48px;padding:32px;background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;">
+              <strong style="display:block;margin-bottom:8px;font-family:var(--font-heading);">Djonny Noel</strong>
+              <p style="margin:0;color:var(--color-gray-500);font-size:15px;">Founder of Tinaht. Network architect and engineer with hands-on experience designing and deploying VLAN infrastructure for small and mid-sized businesses across New England. Based in Littleton, MA.</p>
+            </div>
+
+            <!-- PREV/NEXT NAV -->
+            <nav class="article-nav" style="margin-top:48px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+              <a href="../../blog" class="btn btn-secondary">&larr; Back to Blog</a>
+              <a href="../../services/network-consulting" class="btn btn-primary">Network Consulting Services &rarr;</a>
+            </nav>
+
+          </article>
+
+          <!-- SIDEBAR -->
+          <aside class="article-sidebar">
+
+            <div class="sidebar-widget" style="background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;padding:24px;margin-bottom:24px;">
+              <h4 style="margin-bottom:16px;">Table of Contents</h4>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+                <li><a href="#what-is-a-vlan" style="color:var(--color-gray-400);font-size:14px;">What Is a VLAN?</a></li>
+                <li><a href="#why-small-offices-need-vlans" style="color:var(--color-gray-400);font-size:14px;">Why Small Offices Need VLANs</a></li>
+                <li><a href="#recommended-vlan-structure" style="color:var(--color-gray-400);font-size:14px;">Recommended VLAN Structure</a></li>
+                <li><a href="#configuring-vlans-switches" style="color:var(--color-gray-400);font-size:14px;">Configuring VLANs on Switches</a></li>
+                <li><a href="#ssid-vlan-mapping" style="color:var(--color-gray-400);font-size:14px;">SSID-to-VLAN Mapping</a></li>
+                <li><a href="#common-mistakes" style="color:var(--color-gray-400);font-size:14px;">Common Mistakes to Avoid</a></li>
+                <li><a href="#diy-vs-professional" style="color:var(--color-gray-400);font-size:14px;">DIY vs. Hire a Professional</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar-widget" style="background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;padding:24px;margin-bottom:24px;">
+              <h4 style="margin-bottom:12px;">Related Service</h4>
+              <p style="color:var(--color-gray-500);font-size:14px;margin-bottom:16px;">We design and implement VLAN infrastructure for small offices — switches, APs, firewall rules, and documentation.</p>
+              <a href="../../services/network-consulting" class="btn btn-primary" style="width:100%;text-align:center;display:block;">Network Consulting</a>
+            </div>
+
+            <div class="sidebar-widget" style="background:var(--color-gray-900);border:1px solid var(--color-gray-700);border-radius:12px;padding:24px;">
+              <h4 style="margin-bottom:12px;">Related Articles</h4>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+                <li><a href="../zero-trust-architecture" style="color:var(--color-gray-400);font-size:14px;">Zero Trust Architecture: A Practical Implementation Guide</a></li>
+                <li><a href="../ssl-tls-best-practices-2026" style="color:var(--color-gray-400);font-size:14px;">SSL/TLS Best Practices: Securing Your Web Applications in 2026</a></li>
+                <li><a href="../docker-vs-kubernetes" style="color:var(--color-gray-400);font-size:14px;">Docker vs. Kubernetes: Choosing the Right Container Strategy</a></li>
+              </ul>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../../" class="site-logo"><span class="site-logo__text">Tinaht</span></a>
+          <p>Scalable, secure technology solutions for startups and businesses that demand more.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          </div>
+        </div>
+        <div><h4 class="footer-heading">Services</h4><ul class="footer-links"><li><a href="../../services/ai-automation">AI Automation</a></li><li><a href="../../services/managed-hosting">Managed Hosting</a></li><li><a href="../../services/network-consulting">Network Consulting</a></li><li><a href="../../services#cybersecurity">Cybersecurity</a></li><li><a href="../../services#speed-optimization">Speed Optimization</a></li></ul></div>
+        <div><h4 class="footer-heading">Company</h4><ul class="footer-links"><li><a href="../../about">About</a></li><li><a href="../../portfolio">Portfolio</a></li><li><a href="../../blog">Blog</a></li><li><a href="../../contact">Contact</a></li></ul></div>
+        <div><h4 class="footer-heading">Legal</h4><ul class="footer-links"><li><a href="../../privacy">Privacy Policy</a></li><li><a href="../../terms">Terms of Service</a></li><li><a href="../../refund-policy">Refund Policy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Tinaht. All rights reserved.</p><ul class="footer-bottom-links"><li><a href="../../privacy">Privacy</a></li><li><a href="../../terms">Terms</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>
