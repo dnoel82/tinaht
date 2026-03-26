@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Speed Optimization Service — Faster Pages, Better Rankings | Tinaht</title>
+  <meta name="description" content="Tinaht's website speed optimization service fixes Core Web Vitals, improves Lighthouse scores, and cuts page load times. Free Lighthouse audit available. Serving businesses nationwide from Littleton, MA.">
+  <link rel="icon" type="image/png" href="../../assets/images/logos/favicon-source.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;700&family=Montserrat:wght@500;600;800&family=Roboto+Condensed:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/portfolio.css">
+  <link rel="stylesheet" href="../../css/pages.css">
+
+  <meta property="og:title" content="Website Speed Optimization Service — Faster Pages, Better Rankings | Tinaht">
+  <meta property="og:description" content="Fix Core Web Vitals, improve Lighthouse scores, and cut page load times. Free Lighthouse audit available from Tinaht.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tinaht.com/services/speed-optimization">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Website Speed Optimization Service | Tinaht">
+  <meta name="twitter:description" content="Fix Core Web Vitals, improve Lighthouse scores, and cut page load times. Free Lighthouse audit available.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Website Speed Optimization Service",
+    "serviceType": "Web Performance Optimization",
+    "provider": {
+      "@type": "Organization",
+      "name": "Tinaht",
+      "url": "https://tinaht.com"
+    },
+    "url": "https://tinaht.com/services/speed-optimization",
+    "description": "Website speed optimization service covering Core Web Vitals (LCP, CLS, INP), image compression, code splitting, CDN configuration, and Lighthouse score improvement for SaaS products, agency sites, and business websites.",
+    "areaServed": "US",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Audit Only",
+        "priceCurrency": "USD",
+        "price": "299",
+        "description": "Full Lighthouse and WebPageTest audit with a written fix report."
+      },
+      {
+        "@type": "Offer",
+        "name": "Audit + Fix",
+        "priceCurrency": "USD",
+        "price": "899",
+        "description": "Audit plus implementation of all identified performance fixes."
+      },
+      {
+        "@type": "Offer",
+        "name": "Full Performance Redesign",
+        "priceCurrency": "USD",
+        "description": "Complete rebuild optimized for performance from the ground up. Custom quote."
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long does a website speed optimization project take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An Audit Only engagement takes 3–5 business days. Audit + Fix is typically 1–2 weeks depending on the scope of changes. A full performance redesign is scoped per project. We deliver a timeline estimate before any work begins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will speed optimization affect my site's design or content?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For Audit + Fix engagements, we work entirely under the hood — image compression, script loading order, cache headers, CDN configuration. Your visitors won't notice a visual difference, only a faster site. A full redesign is a different scope and is discussed and approved upfront."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's a good Lighthouse score to aim for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google considers 90+ as 'Good' across all four categories (Performance, Accessibility, Best Practices, SEO). For most business sites, a Performance score of 85–95 on mobile is realistic and meaningfully better than a score below 70. We'll set expectations during the audit phase based on your stack and constraints."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does page speed actually affect SEO rankings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Google uses Core Web Vitals — LCP, CLS, and INP — as ranking signals as part of the Page Experience update. Beyond rankings, faster pages reduce bounce rate and increase conversion rate. Studies consistently show a 1-second delay in load time reduces conversions by 7% or more."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://tinaht.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://tinaht.com/services" },
+      { "@type": "ListItem", "position": 3, "name": "Website Speed Optimization", "item": "https://tinaht.com/services/speed-optimization" }
+    ]
+  }
+  </script>
+
+  <style>
+    .metric-card { padding: 28px; background: var(--color-gray-900); border: 1px solid var(--color-gray-700); border-radius: 12px; }
+    .metric-card__label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-gray-500); margin-bottom: 8px; }
+    .metric-before { font-size: 28px; font-weight: 700; color: #e05c5c; font-family: var(--font-heading); }
+    .metric-arrow { font-size: 20px; color: var(--color-gray-600); margin: 4px 0; }
+    .metric-after { font-size: 28px; font-weight: 700; color: #4caf84; font-family: var(--font-heading); }
+    .metric-desc { font-size: 14px; color: var(--color-gray-500); margin-top: 8px; }
+    .pricing-card { padding: 32px; background: var(--color-gray-900); border: 1px solid var(--color-gray-700); border-radius: 12px; display: flex; flex-direction: column; }
+    .pricing-card--featured { border-color: var(--color-primary); }
+    .pricing-card__badge { display: inline-block; background: var(--color-primary); color: #fff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 20px; margin-bottom: 16px; }
+    .pricing-card__price { font-size: 36px; font-weight: 800; font-family: var(--font-heading); margin: 8px 0 4px; }
+    .pricing-card__price span { font-size: 15px; font-weight: 400; color: var(--color-gray-500); }
+    .pricing-card ul { list-style: none; padding: 0; margin: 20px 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .pricing-card ul li { font-size: 14px; color: var(--color-gray-400); padding-left: 20px; position: relative; }
+    .pricing-card ul li::before { content: "✓"; position: absolute; left: 0; color: #4caf84; font-weight: 700; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .tool-item { padding: 20px 24px; background: var(--color-gray-900); border: 1px solid var(--color-gray-700); border-radius: 10px; }
+    .tool-item strong { display: block; margin-bottom: 6px; font-family: var(--font-heading); color: var(--color-white); }
+    .tool-item span { font-size: 14px; color: var(--color-gray-500); line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../../" class="site-logo" aria-label="Tinaht home"><span class="site-logo__text">Tinaht</span></a>
+      <nav class="nav-list-desktop" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../portfolio">Portfolio</a></li>
+          <li><a href="../../services" class="active">Services</a></li>
+          <li><a href="../../about">About</a></li>
+          <li><a href="../../blog">Blog</a></li>
+          <li><a href="../../contact" class="btn btn-primary btn-sm">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="drawer-overlay" aria-hidden="true"></div>
+  <nav class="mobile-drawer" aria-label="Mobile navigation">
+    <ul class="nav-list">
+      <li><a href="../../">Home</a></li>
+      <li><a href="../../portfolio">Portfolio</a></li>
+      <li><a href="../../services">Services</a></li>
+      <li><a href="../../about">About</a></li>
+      <li><a href="../../blog">Blog</a></li>
+      <li><a href="../../contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="../../services">Services</a>
+          <span aria-hidden="true">/</span>
+          <span>Speed Optimization</span>
+        </nav>
+        <h1>Website Speed Optimization Service — <span class="text-gradient">Faster Pages, Better Rankings</span></h1>
+        <p style="max-width:680px;margin:0 auto;">Every second your site takes to load costs you visitors, rankings, and revenue. A Lighthouse score below 60 means Google is penalizing your pages. A slow LCP means users leave before your content ever appears. We fix the problems — measurably, documented, and without touching your design.</p>
+        <div style="margin-top:32px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="../../contact" class="btn btn-primary">Get a Free Lighthouse Audit</a>
+          <a href="../../services" class="btn btn-secondary">All Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE AUDIT AND FIX -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Scope of Work</p>
+          <h2>What We Audit and Fix</h2>
+          <p style="max-width:600px;margin:0 auto;">Our <strong>website speed optimization service</strong> covers every layer that affects how fast your pages load and how Google scores them — from render-blocking scripts to CDN misconfiguration.</p>
+        </div>
+        <div class="grid-3" data-animate="fade-up">
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-primary);margin-bottom:10px;">LCP</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Largest Contentful Paint</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">We identify your LCP element — typically a hero image or heading — and eliminate the delays caused by render-blocking resources, unoptimized images, and slow server response times.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-primary);margin-bottom:10px;">CLS</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Cumulative Layout Shift</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">Layout shifts happen when images, ads, or fonts load without reserved dimensions. We add explicit width/height attributes, preload key fonts, and stabilize dynamic content to keep your CLS below 0.1.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-primary);margin-bottom:10px;">INP</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Interaction to Next Paint</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">INP replaced FID as Google's interactivity metric in 2024. We reduce long tasks, defer non-critical JavaScript, and break up heavy event handlers that block the main thread and delay user input response.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-primary);margin-bottom:10px;">Images</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Image Optimization</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">We convert images to WebP and AVIF, implement responsive <code>srcset</code> for correct sizing at every viewport, add lazy loading to below-the-fold assets, and strip unnecessary metadata from every file.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-primary);margin-bottom:10px;">JS / CSS</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">Code Splitting &amp; Minification</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">Oversized JavaScript bundles are one of the leading causes of slow mobile performance. We configure Vite or Webpack to split bundles by route, tree-shake unused code, and defer scripts that don't need to run on page load.</p>
+          </div>
+
+          <div class="card" style="padding:28px;">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-primary);margin-bottom:10px;">CDN / Cache</div>
+            <h3 style="font-size:18px;margin-bottom:8px;">CDN &amp; Caching Strategy</h3>
+            <p style="color:var(--color-gray-500);font-size:15px;">We configure Cloudflare CDN to serve assets from edge locations close to your users, set long-lived cache headers for static files, and tune Nginx or your hosting provider's cache rules to minimize origin requests.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR PROCESS -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Our Process</p>
+          <h2>How It Works</h2>
+          <p style="max-width:580px;margin:0 auto;">Three steps from a slow site to a documented, verified performance improvement. No guesswork, no black-box changes.</p>
+        </div>
+        <div class="process-steps" data-animate="fade-up">
+
+          <div class="process-step">
+            <div class="process-step__number">01</div>
+            <div class="process-step__content">
+              <h3>Audit</h3>
+              <p>We run your site through Lighthouse, WebPageTest, and Chrome DevTools — on both desktop and mobile — and produce a prioritized report covering every performance issue, its severity, and its fix. You receive the full report before any work begins. No surprises.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">02</div>
+            <div class="process-step__content">
+              <h3>Fix</h3>
+              <p>We implement fixes in order of impact — LCP issues first, then INP, then CLS, then secondary optimizations like caching, CDN rules, and font loading. Changes are made against a staging environment and reviewed before deployment. You approve before anything goes live.</p>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__number">03</div>
+            <div class="process-step__content">
+              <h3>Verify</h3>
+              <p>After deployment, we run a full re-test on both desktop and mobile, document the before/after scores for every metric, and deliver a final performance report you can share with stakeholders. If a score regresses within 30 days due to our changes, we fix it at no charge.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU GET — BEFORE / AFTER -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Results</p>
+          <h2>What You Get</h2>
+          <p style="max-width:620px;margin:0 auto;">These are real numbers from our <strong>page speed service</strong> engagements — not theoretical maximums. Results vary by stack and starting condition, but the direction is always the same.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:900px;margin:0 auto;" data-animate="fade-up">
+
+          <div class="metric-card">
+            <div class="metric-card__label">Lighthouse Performance</div>
+            <div class="metric-before">43</div>
+            <div class="metric-arrow">↓</div>
+            <div class="metric-after">94</div>
+            <div class="metric-desc">Mobile score, e-commerce site</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card__label">LCP (Largest Contentful Paint)</div>
+            <div class="metric-before">6.2s</div>
+            <div class="metric-arrow">↓</div>
+            <div class="metric-after">1.1s</div>
+            <div class="metric-desc">SaaS marketing page</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card__label">CLS Score</div>
+            <div class="metric-before">0.38</div>
+            <div class="metric-arrow">↓</div>
+            <div class="metric-after">0.02</div>
+            <div class="metric-desc">Blog with dynamic ads</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card__label">Total Page Weight</div>
+            <div class="metric-before">4.8 MB</div>
+            <div class="metric-arrow">↓</div>
+            <div class="metric-after">890 KB</div>
+            <div class="metric-desc">Agency site with uncompressed images</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card__label">Time to Interactive</div>
+            <div class="metric-before">9.4s</div>
+            <div class="metric-arrow">↓</div>
+            <div class="metric-after">2.3s</div>
+            <div class="metric-desc">WordPress + heavy plugin stack</div>
+          </div>
+
+        </div>
+        <p style="text-align:center;margin-top:28px;color:var(--color-gray-600);font-size:14px;">Want to know where your site stands? <a href="../../contact" style="color:var(--color-primary);">Request a free Lighthouse audit.</a></p>
+      </div>
+    </section>
+
+    <!-- TOOLS WE USE -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Our Toolkit</p>
+          <h2>Tools We Use</h2>
+        </div>
+        <div class="tools-grid" data-animate="fade-up">
+          <div class="tool-item">
+            <strong>Google Lighthouse</strong>
+            <span>Our primary scoring benchmark. We run Lighthouse in CI-like conditions — throttled mobile, consistent hardware — so scores are reproducible and comparable across audits.</span>
+          </div>
+          <div class="tool-item">
+            <strong>WebPageTest</strong>
+            <span>Filmstrip view and waterfall charts that show exactly when each resource loads, which requests block rendering, and where time is being lost in the request chain.</span>
+          </div>
+          <div class="tool-item">
+            <strong>Squoosh</strong>
+            <span>Google's image compression tool for converting assets to WebP and AVIF with precise quality control — we use it to find the minimum file size that maintains acceptable visual quality.</span>
+          </div>
+          <div class="tool-item">
+            <strong>Cloudflare CDN</strong>
+            <span>Edge caching, Argo smart routing, Cache Rules for fine-grained TTL control, and automatic image resizing via Cloudflare Images. We configure and verify, not just enable.</span>
+          </div>
+          <div class="tool-item">
+            <strong>Vite / Webpack</strong>
+            <span>Bundle analysis with rollup-plugin-visualizer or webpack-bundle-analyzer, route-based code splitting, tree shaking, and dynamic imports to eliminate JavaScript overhead at load time.</span>
+          </div>
+          <div class="tool-item">
+            <strong>Nginx</strong>
+            <span>Server-side gzip/Brotli compression, cache-control headers, HTTP/2 push configuration, and static asset serving tuned to eliminate unnecessary origin round-trips.</span>
+          </div>
+        </div>
+        <p style="margin-top:24px;text-align:center;color:var(--color-gray-500);font-size:14px;">Curious about what Google changed in 2026? Read our deep-dive: <a href="../../blog/core-web-vitals-2026" style="color:var(--color-primary);">Core Web Vitals in 2026: What Changed and How to Optimize</a></p>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">Pricing</p>
+          <h2>Simple, Transparent Pricing</h2>
+          <p style="max-width:560px;margin:0 auto;">All engagements include a written deliverable. No retainer required to start. Projects are scoped and approved before any work begins.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:900px;margin:0 auto;" data-animate="fade-up">
+
+          <div class="pricing-card">
+            <h3 style="font-size:20px;margin-bottom:4px;">Audit Only</h3>
+            <p style="color:var(--color-gray-500);font-size:14px;margin-bottom:0;">You need to know what's wrong.</p>
+            <div class="pricing-card__price">$299<span> flat</span></div>
+            <ul>
+              <li>Full Lighthouse audit — desktop &amp; mobile</li>
+              <li>WebPageTest waterfall analysis</li>
+              <li>Prioritized written fix report</li>
+              <li>Core Web Vitals breakdown (LCP, CLS, INP)</li>
+              <li>30-min review call included</li>
+            </ul>
+            <a href="../../contact" class="btn btn-secondary" style="text-align:center;">Get Started</a>
+          </div>
+
+          <div class="pricing-card pricing-card--featured">
+            <div class="pricing-card__badge">Most Popular</div>
+            <h3 style="font-size:20px;margin-bottom:4px;">Audit + Fix</h3>
+            <p style="color:var(--color-gray-500);font-size:14px;margin-bottom:0;">You need it fixed, not just reported.</p>
+            <div class="pricing-card__price">$899<span> flat</span></div>
+            <ul>
+              <li>Everything in Audit Only</li>
+              <li>Implementation of all identified fixes</li>
+              <li>Image optimization + format conversion</li>
+              <li>Cloudflare CDN + cache configuration</li>
+              <li>Code splitting &amp; defer/async cleanup</li>
+              <li>Before/after performance report</li>
+              <li>30-day regression guarantee</li>
+            </ul>
+            <a href="../../contact" class="btn btn-primary" style="text-align:center;">Get Started</a>
+          </div>
+
+          <div class="pricing-card">
+            <h3 style="font-size:20px;margin-bottom:4px;">Full Redesign</h3>
+            <p style="color:var(--color-gray-500);font-size:14px;margin-bottom:0;">Your stack needs a rebuild to perform.</p>
+            <div class="pricing-card__price">Custom<span> quote</span></div>
+            <ul>
+              <li>Everything in Audit + Fix</li>
+              <li>Ground-up performance architecture</li>
+              <li>Framework migration if needed</li>
+              <li>Static generation or edge rendering</li>
+              <li>Full Nginx / CDN configuration</li>
+              <li>Documented performance budget</li>
+            </ul>
+            <a href="../../contact" class="btn btn-secondary" style="text-align:center;">Request a Quote</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-header" data-animate="fade-up">
+          <p class="section-eyebrow">FAQ</p>
+          <h2>Common Questions</h2>
+        </div>
+        <div class="faq-list" style="max-width:760px;margin:0 auto;" data-animate="fade-up">
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="this.parentElement.classList.toggle('is-open')">
+              How long does a website speed optimization project take?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>An Audit Only engagement takes 3–5 business days. Audit + Fix is typically 1–2 weeks depending on the scope of changes. A full performance redesign is scoped per project. We deliver a timeline estimate before any work begins.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="this.parentElement.classList.toggle('is-open')">
+              Will speed optimization affect my site's design or content?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>For Audit + Fix engagements, we work entirely under the hood — image compression, script loading order, cache headers, CDN configuration. Your visitors won't notice a visual difference, only a faster site. A full redesign is a different scope and is discussed and approved upfront.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="this.parentElement.classList.toggle('is-open')">
+              What's a good Lighthouse score to aim for?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Google considers 90+ as "Good" across all four categories. For most business sites, a Performance score of 85–95 on mobile is realistic and meaningfully better than anything below 70. We set expectations during the audit phase based on your stack and constraints.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="this.parentElement.classList.toggle('is-open')">
+              Does page speed actually affect SEO rankings?
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><p>Yes. Google uses Core Web Vitals — LCP, CLS, and INP — as ranking signals. Beyond rankings, faster pages reduce bounce rate and increase conversion rate. Studies consistently show a 1-second delay in load time reduces conversions by 7% or more. A <strong>Lighthouse score improvement</strong> from 45 to 90 is not a vanity metric — it has a measurable downstream effect on traffic and revenue.</p></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner" data-animate="fade-up">
+          <h2>Find Out What's Slowing Your Site Down — Free</h2>
+          <p>We'll run a full Lighthouse audit on your top landing pages, score your Core Web Vitals, and send you a written summary of the top issues — no cost, no commitment. Most audits are delivered within 48 hours.</p>
+          <a href="../../contact" class="btn">Get Your Free Lighthouse Audit</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../../" class="site-logo"><span class="site-logo__text">Tinaht</span></a>
+          <p>Scalable, secure technology solutions for startups and businesses that demand more.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          </div>
+        </div>
+        <div><h4 class="footer-heading">Services</h4><ul class="footer-links"><li><a href="../ai-automation">AI Automation</a></li><li><a href="../managed-hosting">Managed Hosting</a></li><li><a href="../network-consulting">Network Consulting</a></li><li><a href="../speed-optimization">Speed Optimization</a></li></ul></div>
+        <div><h4 class="footer-heading">Company</h4><ul class="footer-links"><li><a href="../../about">About</a></li><li><a href="../../portfolio">Portfolio</a></li><li><a href="../../blog">Blog</a></li><li><a href="../../contact">Contact</a></li></ul></div>
+        <div><h4 class="footer-heading">Legal</h4><ul class="footer-links"><li><a href="../../privacy">Privacy Policy</a></li><li><a href="../../terms">Terms of Service</a></li><li><a href="../../refund-policy">Refund Policy</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Tinaht. All rights reserved.</p><ul class="footer-bottom-links"><li><a href="../../privacy">Privacy</a></li><li><a href="../../terms">Terms</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>
