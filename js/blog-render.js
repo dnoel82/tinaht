@@ -46,7 +46,7 @@
         '<div class="blog-featured__image-overlay"></div>' +
         '</div>' +
         '<div class="blog-featured__content">' +
-        '<span class="card__tag">' + escapeHTML(TinahtData.CATEGORIES[featured.category] || featured.category) + '</span>' +
+        '<span class="card__tag">' + escapeHTML(featured.categoryLabel || TinahtData.CATEGORIES[featured.category] || featured.category) + '</span>' +
         '<h2>' + escapeHTML(featured.title) + '</h2>' +
         '<p>' + escapeHTML(featured.description) + '</p>' +
         '<div class="blog-featured__meta">' +
@@ -87,7 +87,7 @@
           (post.imageUrl ? '<img src="' + escapeHTML(post.imageUrl) + '" alt="' + escapeHTML(post.title) + '" loading="lazy">' : '') +
           '<div class="card__image-overlay"></div>' +
           '</div>' +
-          '<span class="card__tag">' + escapeHTML(TinahtData.CATEGORIES[post.category] || post.category) + '</span>' +
+          '<span class="card__tag">' + escapeHTML(post.categoryLabel || TinahtData.CATEGORIES[post.category] || post.category) + '</span>' +
           '<h3 class="card__title">' + escapeHTML(post.title) + '</h3>' +
           '<p class="card__text">' + escapeHTML(post.description) + '</p>' +
           '<div class="blog-featured__meta" style="padding:0 24px 20px;">' +

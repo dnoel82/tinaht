@@ -18,7 +18,8 @@
     'hosting-devops': 'Hosting & DevOps',
     'cybersecurity': 'Cybersecurity',
     'web-performance': 'Web Performance',
-    'industry-news': 'Industry News'
+    'industry-news': 'Industry News',
+    'networking': 'Networking'
   };
 
   // ── Published data cache (populated by fetchPublished) ────
