@@ -31,7 +31,8 @@ window.TinahtBlogFilter = (function () {
 
         // Filter featured article
         if (featured) {
-          if (filter === 'all' || featured.getAttribute('data-category') === filter) {
+          var featCats = (featured.getAttribute('data-category') || '').split(' ');
+          if (filter === 'all' || featCats.indexOf(filter) !== -1) {
             featured.style.display = '';
           } else {
             featured.style.display = 'none';
@@ -42,7 +43,8 @@ window.TinahtBlogFilter = (function () {
         var cards = document.querySelectorAll('.blog-card');
         var visibleCount = 0;
         cards.forEach(function (card) {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          var cats = (card.getAttribute('data-category') || '').split(' ');
+          if (filter === 'all' || cats.indexOf(filter) !== -1) {
             card.style.display = '';
             card.style.opacity = '0';
             card.style.transform = 'translateY(16px)';
