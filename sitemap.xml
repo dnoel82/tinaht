@@ -3,7 +3,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://dntest.tinaht.com/</loc>
+    <loc>https://tinaht.com/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,37 +11,37 @@
 
   <!-- Service Pages -->
   <url>
-    <loc>https://dntest.tinaht.com/services/</loc>
+    <loc>https://tinaht.com/services/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/services/ai-automation/</loc>
+    <loc>https://tinaht.com/services/ai-automation/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/services/managed-hosting/</loc>
+    <loc>https://tinaht.com/services/managed-hosting/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/services/network-consulting/</loc>
+    <loc>https://tinaht.com/services/network-consulting/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/services/cybersecurity/</loc>
+    <loc>https://tinaht.com/services/cybersecurity/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/services/speed-optimization/</loc>
+    <loc>https://tinaht.com/services/speed-optimization/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -49,19 +49,19 @@
 
   <!-- Company Pages -->
   <url>
-    <loc>https://dntest.tinaht.com/about/</loc>
+    <loc>https://tinaht.com/about/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/portfolio/</loc>
+    <loc>https://tinaht.com/portfolio/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/contact/</loc>
+    <loc>https://tinaht.com/contact/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -69,7 +69,7 @@
 
   <!-- Blog Listing -->
   <url>
-    <loc>https://dntest.tinaht.com/blog/</loc>
+    <loc>https://tinaht.com/blog/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -77,61 +77,61 @@
 
   <!-- Blog Posts -->
   <url>
-    <loc>https://dntest.tinaht.com/blog/ai-workflow-automation-small-business/</loc>
+    <loc>https://tinaht.com/blog/ai-workflow-automation-small-business/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/n8n-vs-zapier/</loc>
+    <loc>https://tinaht.com/blog/n8n-vs-zapier/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/vlan-setup-small-office/</loc>
+    <loc>https://tinaht.com/blog/vlan-setup-small-office/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/n8n-slack-automation/</loc>
+    <loc>https://tinaht.com/blog/n8n-slack-automation/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/docker-vs-kubernetes/</loc>
+    <loc>https://tinaht.com/blog/docker-vs-kubernetes/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/zero-trust-architecture/</loc>
+    <loc>https://tinaht.com/blog/zero-trust-architecture/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/core-web-vitals-2026/</loc>
+    <loc>https://tinaht.com/blog/core-web-vitals-2026/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/ai-chatbots-concept-to-deployment/</loc>
+    <loc>https://tinaht.com/blog/ai-chatbots-concept-to-deployment/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/edge-computing-infrastructure/</loc>
+    <loc>https://tinaht.com/blog/edge-computing-infrastructure/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://dntest.tinaht.com/blog/ssl-tls-best-practices-2026/</loc>
+    <loc>https://tinaht.com/blog/ssl-tls-best-practices-2026/</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>never</changefreq>
     <priority>0.6</priority>
