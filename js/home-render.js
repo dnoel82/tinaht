@@ -85,7 +85,7 @@
               '</div>' +
               '<h3 class="card__title">' + escapeHTML(post.title) + '</h3>' +
               '<p class="card__text">' + escapeHTML(post.description) + '</p>' +
-              '<a href="blog" class="card__link">Read More &rarr;</a>' +
+              '<a href="' + escapeHTML(post.url || 'blog') + '" class="card__link">Read More &rarr;</a>' +
               '</article>';
           });
           grid.innerHTML = html;
