@@ -47,7 +47,7 @@
         '</div>' +
         '<div class="blog-featured__content">' +
         '<span class="card__tag">' + escapeHTML(featured.categoryLabel || TinahtData.CATEGORIES[featured.category] || featured.category) + '</span>' +
-        '<h2>' + escapeHTML(featured.title) + '</h2>' +
+        '<h2>' + (featured.url ? '<a href="' + escapeHTML(featured.url) + '" style="color:inherit;text-decoration:none;">' + escapeHTML(featured.title) + '</a>' : escapeHTML(featured.title)) + '</h2>' +
         '<p>' + escapeHTML(featured.description) + '</p>' +
         '<div class="blog-featured__meta">' +
         '<span>' + escapeHTML(featured.author) + '</span>' +
