@@ -61,7 +61,7 @@
       '<article class="card portfolio-card" data-category="' +
       escapeHTML(project.category) +
       '">' +
-      '  <a href="project.html?slug=' +
+      '  <a href="/portfolio/project.html?slug=' +
       encodeURIComponent(project.slug) +
       '" class="card__image-link">' +
       '    <div class="card__image">' +
@@ -86,7 +86,7 @@
       '  <p class="card__text">' +
       escapeHTML(project.shortDescription) +
       '</p>' +
-      '  <a href="project.html?slug=' +
+      '  <a href="/portfolio/project.html?slug=' +
       encodeURIComponent(project.slug) +
       '" class="card__link">View Project &rarr;</a>' +
       '</article>'

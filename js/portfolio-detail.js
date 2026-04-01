@@ -213,7 +213,7 @@
       .map(function (p) {
         return (
           '<article class="card">' +
-          '  <a href="project.html?slug=' + encodeURIComponent(p.slug) + '">' +
+          '  <a href="/portfolio/project.html?slug=' + encodeURIComponent(p.slug) + '">' +
           '    <div class="card__image">' +
           (p.thumbnailUrl
             ? '      <img src="' + escapeHTML(p.thumbnailUrl) + '" alt="' + escapeHTML(p.title) + '" loading="lazy">'
@@ -225,7 +225,7 @@
           '  <span class="card__tag">' + escapeHTML(p.category) + '</span>' +
           '  <h3 class="card__title">' + escapeHTML(p.title) + '</h3>' +
           '  <p class="card__text">' + escapeHTML(p.shortDescription) + '</p>' +
-          '  <a href="project.html?slug=' + encodeURIComponent(p.slug) + '" class="card__link">View Project &rarr;</a>' +
+          '  <a href="/portfolio/project.html?slug=' + encodeURIComponent(p.slug) + '" class="card__link">View Project &rarr;</a>' +
           '</article>'
         );
       })
