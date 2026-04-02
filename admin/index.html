@@ -49,6 +49,7 @@
         <button class="filter-btn" data-tab="portfolio">Portfolio</button>
         <button class="filter-btn" data-tab="testimonials">Testimonials</button>
         <button class="filter-btn" data-tab="team">Team Members</button>
+        <button class="filter-btn" data-tab="contact-config">Contact Form Config</button>
       </div>
 
       <!-- PUBLISH BAR -->
@@ -71,6 +72,101 @@
 
       <!-- CONTENT GRID -->
       <div id="admin-content" class="admin-grid"></div>
+
+      <!-- CONTACT FORM CONFIG PANEL (inserted inside admin-body so tabs stay visible) -->
+      <div id="tab-contact-config" style="display:none;">
+
+        <!-- PART 1: Webhook Settings -->
+        <section class="cfc-section">
+          <h3 class="cfc-section__title">Part 1 — Webhook Settings</h3>
+          <div class="admin-form">
+            <div class="form-group">
+              <label for="cfc-webhook-url">n8n Webhook URL</label>
+              <input type="url" id="cfc-webhook-url" class="form-input" placeholder="https://n8n.tinaht.com/webhook/contact-form">
+            </div>
+            <div class="form-group">
+              <label for="cfc-secret">Form Secret Token</label>
+              <div class="cfc-pw-wrap">
+                <input type="password" id="cfc-secret" class="form-input" placeholder="••••••••">
+                <button type="button" class="cfc-toggle-pw" data-target="cfc-secret" aria-label="Show/hide">&#128065;</button>
+              </div>
+            </div>
+            <button type="button" id="cfc-save-btn" class="btn btn-primary">Save Settings</button>
+            <span id="cfc-save-status" class="cfc-save-status"></span>
+          </div>
+        </section>
+
+        <!-- PART 2: Namecheap SMTP Reference Card -->
+        <section class="cfc-section">
+          <h3 class="cfc-section__title">Part 2 — Namecheap SMTP Reference Card</h3>
+          <div class="cfc-warning-note">
+            &#9888; These values are for your reference only. Enter them manually inside n8n&#39;s credential store. This page never sends or stores your SMTP password.
+          </div>
+          <div class="admin-form">
+            <div class="admin-form__row">
+              <div class="form-group">
+                <label for="smtp-host">SMTP Host</label>
+                <input type="text" id="smtp-host" class="form-input" placeholder="mail.privateemail.com">
+              </div>
+              <div class="form-group">
+                <label for="smtp-port">Port</label>
+                <select id="smtp-port" class="form-input">
+                  <option value="465">465 — SSL</option>
+                  <option value="587">587 — TLS</option>
+                </select>
+              </div>
+            </div>
+            <div class="admin-form__row">
+              <div class="form-group">
+                <label for="smtp-user">Username</label>
+                <input type="text" id="smtp-user" class="form-input" placeholder="you@tinaht.com">
+              </div>
+              <div class="form-group">
+                <label for="smtp-pass">Password</label>
+                <div class="cfc-pw-wrap">
+                  <input type="password" id="smtp-pass" class="form-input" placeholder="••••••••">
+                  <button type="button" class="cfc-toggle-pw" data-target="smtp-pass" aria-label="Show/hide">&#128065;</button>
+                </div>
+              </div>
+            </div>
+            <div class="admin-form__row">
+              <div class="form-group">
+                <label for="smtp-from">From Email</label>
+                <input type="email" id="smtp-from" class="form-input" placeholder="hello@tinaht.com">
+              </div>
+              <div class="form-group">
+                <label for="smtp-notify">Notify Email</label>
+                <input type="email" id="smtp-notify" class="form-input" placeholder="you@tinaht.com">
+              </div>
+            </div>
+            <!-- Live Summary Table -->
+            <div class="cfc-summary-wrap">
+              <p class="form-hint" style="margin-bottom:10px;">Live summary — updates as you type:</p>
+              <table class="cfc-summary-table">
+                <tbody>
+                  <tr><td class="cfc-sum-label">Host</td><td><span class="cfc-dot" id="dot-host"></span> <span id="sum-host">—</span></td></tr>
+                  <tr><td class="cfc-sum-label">Port</td><td><span class="cfc-dot cfc-dot--green" id="dot-port"></span> <span id="sum-port">465</span></td></tr>
+                  <tr><td class="cfc-sum-label">Encryption</td><td><span class="cfc-dot cfc-dot--green" id="dot-enc"></span> <span id="sum-enc">SSL</span></td></tr>
+                  <tr><td class="cfc-sum-label">Username</td><td><span class="cfc-dot" id="dot-user"></span> <span id="sum-user">—</span></td></tr>
+                  <tr><td class="cfc-sum-label">From Email</td><td><span class="cfc-dot" id="dot-from"></span> <span id="sum-from">—</span></td></tr>
+                  <tr><td class="cfc-sum-label">Notify Email</td><td><span class="cfc-dot" id="dot-notify"></span> <span id="sum-notify">—</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- PART 3: Send Live Test -->
+        <section class="cfc-section">
+          <h3 class="cfc-section__title">Part 3 — Send Live Test</h3>
+          <div class="admin-form">
+            <p class="form-hint" style="margin-bottom:14px;">Reads Webhook URL &amp; secret from Part 1 (localStorage). Sends a test payload to your n8n webhook and reports the HTTP response.</p>
+            <button type="button" id="cfc-test-btn" class="btn btn-publish" style="font-size:14px;padding:10px 24px;">Send Test Email</button>
+            <div id="cfc-test-result" class="cfc-test-result" style="display:none;"></div>
+          </div>
+        </section>
+
+      </div><!-- /#tab-contact-config -->
 
     </div>
   </div>
@@ -124,5 +220,283 @@
 
   <script src="../js/data-manager.js?v=7"></script>
   <script src="../js/admin.js?v=7"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Tab wiring ─────────────────────────────────────────── */
+    var cfcPanel    = document.getElementById('tab-contact-config');
+    var publishBar  = document.querySelector('.admin-publish-bar');
+    var actionBar   = document.querySelector('.admin-actions');
+    var contentGrid = document.getElementById('admin-content');
+    var tabs        = document.querySelectorAll('.admin-tabs .filter-btn');
+
+    function showCfc(on) {
+      var display = on ? 'none' : '';
+      if (publishBar)  publishBar.style.display  = display;
+      if (actionBar)   actionBar.style.display    = display;
+      if (contentGrid) contentGrid.style.display  = display;
+      cfcPanel.style.display = on ? 'block' : 'none';
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.getAttribute('data-tab') === 'contact-config') {
+          showCfc(true);
+          cfcLoad();
+        } else {
+          showCfc(false);
+        }
+      });
+    });
+
+    /* ── Part 1: load / save webhook settings ───────────────── */
+    function cfcLoad () {
+      var url    = localStorage.getItem('n8n_webhook_url') || '';
+      var secret = localStorage.getItem('n8n_form_secret') || '';
+      document.getElementById('cfc-webhook-url').value = url;
+      document.getElementById('cfc-secret').value      = secret;
+    }
+
+    document.getElementById('cfc-save-btn').addEventListener('click', function () {
+      var url    = document.getElementById('cfc-webhook-url').value.trim();
+      var secret = document.getElementById('cfc-secret').value;
+      localStorage.setItem('n8n_webhook_url', url);
+      localStorage.setItem('n8n_form_secret', secret);
+      var status = document.getElementById('cfc-save-status');
+      status.textContent = '✓ Saved';
+      status.style.color = '#22c55e';
+      status.style.opacity = '1';
+      setTimeout(function () {
+        status.style.opacity = '0';
+        setTimeout(function () { status.textContent = ''; }, 300);
+      }, 2000);
+    });
+
+    /* ── Show/hide password toggles ─────────────────────────── */
+    document.querySelectorAll('.cfc-toggle-pw').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = document.getElementById(btn.getAttribute('data-target'));
+        if (!target) return;
+        target.type = target.type === 'password' ? 'text' : 'password';
+      });
+    });
+
+    /* ── Part 2: live summary table ─────────────────────────── */
+    function updateDot(dotId, filled) {
+      var el = document.getElementById(dotId);
+      if (!el) return;
+      el.className = 'cfc-dot ' + (filled ? 'cfc-dot--green' : 'cfc-dot--red');
+    }
+    function updateSummary() {
+      var host   = document.getElementById('smtp-host').value.trim();
+      var port   = document.getElementById('smtp-port').value;
+      var user   = document.getElementById('smtp-user').value.trim();
+      var from   = document.getElementById('smtp-from').value.trim();
+      var notify = document.getElementById('smtp-notify').value.trim();
+      var enc    = port === '465' ? 'SSL' : 'TLS';
+
+      document.getElementById('sum-host').textContent   = host   || '—';
+      document.getElementById('sum-port').textContent   = port;
+      document.getElementById('sum-enc').textContent    = enc;
+      document.getElementById('sum-user').textContent   = user   || '—';
+      document.getElementById('sum-from').textContent   = from   || '—';
+      document.getElementById('sum-notify').textContent = notify || '—';
+
+      updateDot('dot-host',   !!host);
+      updateDot('dot-port',   true);
+      updateDot('dot-enc',    true);
+      updateDot('dot-user',   !!user);
+      updateDot('dot-from',   !!from);
+      updateDot('dot-notify', !!notify);
+    }
+
+    ['smtp-host','smtp-port','smtp-user','smtp-from','smtp-notify'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('input', updateSummary);
+    });
+    document.getElementById('smtp-port').addEventListener('change', updateSummary);
+
+    /* ── Part 3: send live test ─────────────────────────────── */
+    document.getElementById('cfc-test-btn').addEventListener('click', function () {
+      var webhookUrl = localStorage.getItem('n8n_webhook_url') || '';
+      var secret     = localStorage.getItem('n8n_form_secret') || '';
+      var resultEl   = document.getElementById('cfc-test-result');
+      var notifyVal  = document.getElementById('smtp-notify').value.trim();
+
+      resultEl.style.display = 'none';
+      resultEl.className     = 'cfc-test-result';
+
+      if (!webhookUrl) {
+        resultEl.textContent    = 'Save your webhook URL in Section 1 first.';
+        resultEl.classList.add('cfc-test-result--error');
+        resultEl.style.display  = 'block';
+        return;
+      }
+
+      var payload = {
+        name:    'Admin Test',
+        email:   notifyVal || 'admin@tinaht.com',
+        subject: 'SMTP Test',
+        message: 'Test triggered from tinaht.com/admin at ' + new Date().toISOString()
+      };
+
+      var testBtn = document.getElementById('cfc-test-btn');
+      testBtn.disabled    = true;
+      testBtn.textContent = 'Sending…';
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-form-secret': secret
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(function (res) {
+        return res.text().then(function (body) {
+          return { ok: res.ok, status: res.status, body: body };
+        });
+      })
+      .then(function (r) {
+        if (r.ok) {
+          resultEl.innerHTML  = '&#10003; Webhook reached. Check <strong>' + (notifyVal || payload.email) + '</strong> — email should arrive within 30 seconds.';
+          resultEl.classList.add('cfc-test-result--ok');
+        } else {
+          resultEl.textContent = 'Error ' + r.status + ': ' + r.body;
+          resultEl.classList.add('cfc-test-result--error');
+        }
+        resultEl.style.display = 'block';
+      })
+      .catch(function (err) {
+        resultEl.textContent   = 'Request failed: ' + err.message;
+        resultEl.classList.add('cfc-test-result--error');
+        resultEl.style.display = 'block';
+      })
+      .finally(function () {
+        testBtn.disabled    = false;
+        testBtn.textContent = 'Send Test Email';
+      });
+    });
+
+  })();
+  </script>
+
+  <style>
+    /* ── Contact Form Config panel ──────────────────────────── */
+    #tab-contact-config {
+      padding-top: 24px;
+    }
+    .cfc-section {
+      background: var(--color-gray-900);
+      border: 1px solid var(--color-gray-700);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .cfc-section__title {
+      font-family: var(--font-nav);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-white);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-gray-700);
+    }
+    .cfc-warning-note {
+      background: rgba(234, 179, 8, 0.1);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 8px;
+      color: #fde68a;
+      font-size: 13px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .cfc-pw-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .cfc-pw-wrap .form-input {
+      flex: 1;
+      padding-right: 44px;
+    }
+    .cfc-toggle-pw {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-gray-400);
+      font-size: 16px;
+      padding: 0;
+      line-height: 1;
+    }
+    .cfc-toggle-pw:hover {
+      color: var(--color-white);
+    }
+    .cfc-save-status {
+      margin-left: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+    .cfc-summary-wrap {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--color-gray-700);
+      border-radius: 8px;
+    }
+    .cfc-summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .cfc-summary-table tr + tr td {
+      border-top: 1px solid var(--color-gray-700);
+    }
+    .cfc-summary-table td {
+      padding: 8px 10px;
+      color: var(--color-gray-300);
+      vertical-align: middle;
+    }
+    .cfc-sum-label {
+      font-family: var(--font-nav);
+      font-weight: 600;
+      color: var(--color-gray-400) !important;
+      width: 120px;
+      white-space: nowrap;
+    }
+    .cfc-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+      background: var(--color-gray-600);
+    }
+    .cfc-dot--green { background: #22c55e; }
+    .cfc-dot--red   { background: #ef4444; }
+    .cfc-test-result {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .cfc-test-result--ok {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      color: #86efac;
+    }
+    .cfc-test-result--error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #fca5a5;
+    }
+  </style>
 </body>
 </html>
