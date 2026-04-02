@@ -96,9 +96,8 @@
           <!-- CONTACT FORM -->
           <div>
             <h2 style="margin-bottom:24px;">Send Us a Message</h2>
-            <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-              <input type="hidden" name="form-name" value="contact">
-              <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <form class="contact-form" id="contact-form" name="contact" novalidate>
+              <p class="sr-only"><label>Don't fill this out: <input name="bot-field" id="bot-field"></label></p>
 
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
                 <div class="form-group">
@@ -201,5 +200,111 @@
     </div>
   </footer>
   <script src="../js/main.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var form       = document.getElementById('contact-form');
+    var submitBtn  = form.querySelector('button[type="submit"]');
+    var formFields = form.querySelectorAll('.form-group, [style*="grid"]');
+
+    // ── Inject success & error containers after the form ──────
+    var successDiv = document.createElement('div');
+    successDiv.id  = 'contact-success';
+    successDiv.style.cssText = 'display:none;padding:32px 0;';
+    successDiv.innerHTML =
+      '<h3 style="margin-bottom:12px;">Message Received!</h3>' +
+      '<p style="color:var(--color-gray-300);margin-bottom:24px;">Thanks for reaching out. Check your inbox for a confirmation email. We\'ll be in touch within 1-2 business days.</p>' +
+      '<button type="button" id="contact-reset" class="btn btn-secondary">Send another message</button>';
+    form.parentNode.insertBefore(successDiv, form.nextSibling);
+
+    var errorDiv  = document.createElement('p');
+    errorDiv.id   = 'contact-error';
+    errorDiv.style.cssText = 'display:none;color:var(--color-error,#ef4444);font-size:14px;margin-top:12px;';
+    submitBtn.parentNode.insertBefore(errorDiv, submitBtn.nextSibling);
+
+    // ── Reset handler ─────────────────────────────────────────
+    document.getElementById('contact-reset').addEventListener('click', function () {
+      form.reset();
+      form.style.display = '';
+      successDiv.style.display = 'none';
+      showError('');
+    });
+
+    // ── Helpers ───────────────────────────────────────────────
+    function showError(msg) {
+      errorDiv.style.display = msg ? 'block' : 'none';
+      errorDiv.innerHTML = msg;
+    }
+
+    function setLoading(on) {
+      submitBtn.disabled   = on;
+      submitBtn.textContent = on ? 'Sending…' : 'Send Message';
+    }
+
+    // ── Submit ────────────────────────────────────────────────
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      showError('');
+
+      var name    = document.getElementById('name').value.trim();
+      var email   = document.getElementById('email').value.trim();
+      var service = document.getElementById('service').value;
+      var message = document.getElementById('message').value.trim();
+      var phone   = document.getElementById('phone').value.trim();
+      var company = document.getElementById('company').value.trim();
+
+      // Validation
+      if (!name || !email || !service || !message) {
+        showError('Please fill in all required fields (Full Name, Email, Service Interest, Message).');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Please enter a valid email address.');
+        return;
+      }
+
+      // Read config from localStorage
+      var webhookUrl = localStorage.getItem('n8n_webhook_url') || 'https://n8n.tinaht.com/webhook/contact-form';
+      var secret     = localStorage.getItem('n8n_form_secret') || '';
+
+      setLoading(true);
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-form-secret': secret
+        },
+        body: JSON.stringify({
+          name:    name,
+          email:   email,
+          phone:   phone,
+          company: company,
+          subject: service,
+          message: message
+        })
+      })
+      .then(function (res) {
+        if (!res.ok) {
+          return res.text().then(function (body) { throw new Error(body || res.status); });
+        }
+        // Success
+        form.style.display = 'none';
+        successDiv.style.display = 'block';
+      })
+      .catch(function () {
+        showError(
+          'Something went wrong. Please try again or email ' +
+          '<a href="mailto:info@tinaht.com" style="color:var(--color-primary);">info@tinaht.com</a> directly.'
+        );
+      })
+      .finally(function () {
+        setLoading(false);
+      });
+    });
+
+  })();
+  </script>
 </body>
 </html>
